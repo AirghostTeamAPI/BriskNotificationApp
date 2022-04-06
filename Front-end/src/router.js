@@ -22,15 +22,7 @@ function Routes(){
                 name="Detail"
                 component={Detail}
                 options={{
-                    headerRight: () => (
-                      <TouchableOpacity style={{ marginRight: 15 }}>
-                          <Feather
-                          name="shopping-cart"
-                          size={24}
-                          color="black"
-                          />
-                      </TouchableOpacity>  
-                    )
+                    headerShown: false
                 }}
                 />
             </Stack.Navigator>

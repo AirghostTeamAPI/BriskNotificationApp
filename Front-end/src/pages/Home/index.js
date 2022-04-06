@@ -11,8 +11,8 @@ export default function Home() {
 
  return (
    <View>
-      <Text>Teste 2.1</Text>
-      <Button onClick={()=> navigation.navigate('Detail')}></Button>
+      <Text>Home</Text>
+      <Button onPress={()=> navigation.navigate('Detail')}></Button>
       </View>
  )
 }
