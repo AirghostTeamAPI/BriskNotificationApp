@@ -43,6 +43,6 @@ const theme = {
       primary: '#5A55F2',
       accent: '#6EEBF0',
       details: '#C4C4C4',
-      background: '#fff'  
+      background: '#ffffff'  
     },
   };
