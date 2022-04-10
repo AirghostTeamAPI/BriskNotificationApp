@@ -12,7 +12,7 @@ export default function Home() {
  return (
    <View>
       <Text>Teste 2.1</Text>
-      <Button onClick={()=> navigation.navigate('Detail')}></Button>
+      <Button onPress={()=> navigation.navigate('Login')}></Button>
       </View>
  )
 }
