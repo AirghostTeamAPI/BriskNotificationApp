@@ -10,7 +10,6 @@ export default function Header() {
 }
 
 const styles = StyleSheet.create({
-    //css aqui >.<
     header:{
         backgroundColor: "#000"
     }

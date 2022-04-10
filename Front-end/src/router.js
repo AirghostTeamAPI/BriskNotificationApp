@@ -13,10 +13,7 @@ const Stack = createStackNavigator();
 function Routes(){
     return(
         <NavigationContainer>
-            <Stack.Navigator 
-            screenOptions={{
-                header: Header,
-            }}>
+            <Stack.Navigator>
                 <Stack.Screen
                 name="Home"
                 component={Home}
@@ -26,7 +23,15 @@ function Routes(){
                 name="Detail"
                 component={Detail}
                 options={{
-                    headerShown: true
+                    headerShown: true,
+                    title: 'Brisk',
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
                 }}
                 />
             </Stack.Navigator>
