@@ -13,6 +13,7 @@ export default function Detail() {
  const styles = StyleSheet.create({
   view: {
     backgroundColor: colors.primary,
+    color: colors.background
   },
 });
  return (
