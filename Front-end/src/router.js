@@ -6,13 +6,17 @@ import { TouchableOpacity } from 'react-native';
 
 import Home from './pages/Home';
 import Detail from './pages/Detail';
+import Header from './Components/appBar';
 
 const Stack = createStackNavigator();
 
 function Routes(){
     return(
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator 
+            screenOptions={{
+                header: Header,
+            }}>
                 <Stack.Screen
                 name="Home"
                 component={Home}
@@ -22,7 +26,7 @@ function Routes(){
                 name="Detail"
                 component={Detail}
                 options={{
-                    headerShown: false
+                    headerShown: true
                 }}
                 />
             </Stack.Navigator>
