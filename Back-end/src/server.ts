@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import express from "express";
 import connectDB from "../config/database";
 import { importCsvFile } from './scripts/FOL';
+import { importUserCsvFile } from './scripts/User';
 
 import FOL from './routes/api/FOL';
 
@@ -21,9 +22,11 @@ const server = app.listen(port, () =>
 );
 
 importCsvFile()
+importUserCsvFile()
 setInterval(function () {
   console.log('Syncing FOLs...');
   importCsvFile()
+  importUserCsvFile()
 }, 60 * 5000); // 60 * 1000 milsec
 
 export default server;
