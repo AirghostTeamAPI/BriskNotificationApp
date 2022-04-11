@@ -19,6 +19,7 @@ export default function Home() {
       <View>
         <Text style = {styles.view}>Home</Text>
         <Button onPress={()=> navigation.navigate('Detail')}></Button>
+        <Button onPress={()=> navigation.navigate('ListFol')}></Button>
       </View>
  )
 }

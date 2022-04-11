@@ -27,7 +27,8 @@
     "mongoose": "^5.5.7",
     "multer": "^1.4.4",
     "request": "^2.88.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "yarn": "^1.22.18"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

@@ -7,6 +7,7 @@ import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import Home from './pages/Home';
 import Detail from './pages/Detail';
+import ListFol from './pages/ListFol';
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,13 @@ function Routes(){
                         headerShown: false
                     }}
                     />
+                    <Stack.Screen 
+                    name="ListFol"
+                    component={ListFol}
+                    options={{
+                        headerShown: false
+                    }}
+                    />
                 </Stack.Navigator>
             </NavigationContainer>
         </PaperProvider>
@@ -42,7 +50,8 @@ const theme = {
       ...DefaultTheme.colors,
       primary: '#5A55F2',
       accent: '#6EEBF0',
-      details: '#C4C4C4',
-      background: '#ffffff'  
+      details: '#E4E4E4',
+      background: '#ffffff',
+      secondary: '#18BDC3'
     },
   };
