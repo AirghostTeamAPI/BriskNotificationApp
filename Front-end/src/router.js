@@ -15,26 +15,16 @@ function Routes(){
     return(
     <PaperProvider theme={theme}>
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={{header:(props) => <Header {...props}/>}}>
                 <Stack.Screen
                 name="Home"
                 component={Home}
-                options={{ headerShown: false }}
+                options={{ headerShown: true }}
                 />
                 <Stack.Screen 
                 name="Detail"
                 component={Detail}
-                options={{
-                    headerShown: true,
-                    title: 'Brisk',
-                    headerStyle: {
-                        backgroundColor: '#f4511e',
-                    },
-                    headerTintColor: '#fff',
-                    headerTitleStyle: {
-                        fontWeight: 'bold',
-                    },
-                }}
+                options={{ headerShown: true }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
