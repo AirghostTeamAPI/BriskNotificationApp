@@ -18,7 +18,7 @@ export default function Home() {
  return (
       <View>
         <Text style = {styles.view}>Home</Text>
-        <Button onPress={()=> navigation.navigate('Detail')}></Button>
+        <Button onPress={()=> navigation.navigate('Login')}></Button>
       </View>
  )
 }
