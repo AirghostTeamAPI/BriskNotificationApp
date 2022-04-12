@@ -12,7 +12,7 @@ function Login (){
 
   signIn = async () => {
     try {
-      const response = await api.post('ROTA DA API', {login: 'valor', password: 'senha'});
+      const response = await api.post('/api/user/auth', {login: 'jpedro', password: '501358'});
 
       const { user, token } = response.data;
 
