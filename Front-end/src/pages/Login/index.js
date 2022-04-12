@@ -7,11 +7,13 @@ import { useTheme } from 'react-native-paper';
 import api from "../../services/api";
 
 function Login (){
+  const state = {
+
+  };
 
   const signIn = async () => {
     try {
-      const response = await api.post('/api/user/auth', {login: 'jpedro', password: '501358'});
-
+      const response = await api.post('/api/user/auth',{login: 'jpedro', password: '501358'});
       const { user, token } = response.data;
 
       await AsyncStorage.multiSet([

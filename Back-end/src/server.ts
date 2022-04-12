@@ -8,6 +8,7 @@ import BearerStrategy from 'passport-http-bearer';
 import User from "./models/User";
 import jwt from 'jsonwebtoken';
 import { IUser } from './interface/user';
+import cors from 'cors';
 require('dotenv').config();
 
 const app = express();
@@ -17,6 +18,7 @@ connectDB();
 app.set("port", process.env.PORT || 5000);
 app.set("jwt", process.env.jwtSecret || 5000);
 app.use(bodyParser.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(passport.initialize());
