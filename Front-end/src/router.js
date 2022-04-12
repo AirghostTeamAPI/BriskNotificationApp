@@ -4,38 +4,29 @@ import { createStackNavigator} from '@react-navigation/stack';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import Home from './pages/Home';
-import Detail from './pages/Detail';
 import ListFol from './pages/ListFol';
+import Header from './Components/appBar';
 
 const Stack = createStackNavigator();
 
 function Routes(){
     return(
-        <PaperProvider theme={theme}>
-            <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen
-                    name="Home"
-                    component={Home}
-                    options={{ headerShown: false }}
-                    />
-                    <Stack.Screen 
-                    name="Detail"
-                    component={Detail}
-                    options={{
-                        headerShown: false
-                    }}
-                    />
-                    <Stack.Screen 
-                    name="ListFol"
-                    component={ListFol}
-                    options={{
-                        headerShown: false
-                    }}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </PaperProvider>
+    <PaperProvider theme={theme}>
+        <NavigationContainer>
+            <Stack.Navigator screenOptions={{header:(props) => <Header {...props}/>}}>
+                <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{ headerShown: true }}
+                />
+                <Stack.Screen 
+                name="ListFol"
+                component={ListFol}
+                options={{ headerShown: false }}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
+    </PaperProvider>
     )
 }
 

@@ -1,10 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import  { useNavigation } from '@react-navigation/native';
-import { Button } from 'react-native-web';
 import { useTheme } from 'react-native-paper';
-
-
+import CardVehicle from '../../Components/vehicle';
 
 export default function Home() {
  const navigation = useNavigation();
@@ -16,9 +14,7 @@ export default function Home() {
 });
  return (
       <View>
-        <Text style = {styles.view}>Home</Text>
-        <Button onPress={()=> navigation.navigate('Detail')}></Button>
-        <Button onPress={()=> navigation.navigate('ListFol')}></Button>
+        <CardVehicle style = {styles.view}/>
       </View>
  )
 }
