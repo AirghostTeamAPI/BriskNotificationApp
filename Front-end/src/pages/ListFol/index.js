@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Picker } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
 import  { useNavigation } from '@react-navigation/native';
-import { Button as ButtonWeb } from 'react-native-web';
 import { useTheme ,Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import CardFol from '../../Components/FOL';
 
@@ -28,7 +26,7 @@ export default function ListFol() {
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
       >
         <Picker.Item label="Todos" value="1" />
-        <Picker.Item label="Prosche" value="2" />
+        <Picker.Item label="Porsche" value="2" />
 		<Picker.Item label="Mercedes" value="3" />
 		<Picker.Item label="Corvette" value="4" />
       </Picker>

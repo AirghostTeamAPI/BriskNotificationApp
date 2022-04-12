@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
-import { Feather } from '@expo/vector-icons';
-import { TouchableOpacity } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import Home from './pages/Home';
