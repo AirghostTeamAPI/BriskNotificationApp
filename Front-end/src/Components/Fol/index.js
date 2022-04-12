@@ -23,7 +23,6 @@ export default function CardFol() {
     try {            
       const response = await api.get('/api/fols', {equipment: 'Porsche'});
       const { equipment, title, issue_description} = response.data;
-      console.log(response);
       await AsyncStorage.multiSet([
        ['@CodeApi:equipment', JSON.stringify(equipment)],
        ['@CodeApi:title', JSON.stringify(title)],
@@ -37,7 +36,7 @@ export default function CardFol() {
     return(
       <Card>
       <Card.Title
-       title= {listByEquipment.issue_description} subtitle={"•" + listByEquipment.title + " •" + listByEquipment.equipment} style = {styles.view}
+       title= {'Inoperative Clutch Clarification'} subtitle={"•MRC-003/10 •Mercedes"} style = {styles.view}
      
      
       subtitleStyle = {{color: colors.secondary}}

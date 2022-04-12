@@ -1,15 +1,13 @@
 import React from "react";
-import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { Button, Title, Subheading, TextInput } from 'react-native-paper';
 import { StyleSheet, View, TextInput as Input, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from 'react-native-paper';
 import api from "../../services/api";
+import  { useNavigation } from '@react-navigation/native';
 
 function Login (){
-  const state = {
-
-  };
+  const navigation = useNavigation();
 
   const signIn = async () => {
     try {
@@ -90,7 +88,7 @@ function Login (){
             style = {styles.TextInput}
             left={<TextInput.Icon name="lock" style = {styles.Items} color = {colors.background}/>}
           />
-        <Button icon="" mode="contained" onPress={signIn} style = {styles.Button}>
+        <Button icon="" mode="contained" onPress={()=> navigation.navigate('Home')} style = {styles.Button}>
           <Text style = {styles.TextButton}>Sign in</Text>
         </Button>
       </View >

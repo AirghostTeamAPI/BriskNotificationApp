@@ -18,8 +18,6 @@ export default function ListFol() {
 
  return (
    <View>
-      <Text style = {styles.view}>FOL's List</Text>
-      <Button onPress={()=> navigation.navigate('Home')}></Button>
 	  <Picker
         selectedValue={selectedValue}
         style={{ height: 25, width: 150 }}

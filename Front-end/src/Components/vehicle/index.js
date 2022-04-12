@@ -6,7 +6,7 @@ function CardVehicle() {
     const navigation = useNavigation();
     return (
     <div>
-        <Card onPress={()=> navigation.navigate('Detail')}>         
+        <Card onPress={()=> navigation.navigate('ListFol')}>         
             <Card.Title
                 title="veículo"
                 left={(props) => <Avatar.Icon {...props} icon="car" />}

@@ -1,8 +1,10 @@
-import { Appbar, Searchbar, Button, Menu, Divider, Provider  } from 'react-native-paper';
+import { Appbar, Searchbar, Menu, Divider  } from 'react-native-paper';
 import * as React from 'react';
-import { View } from 'react-native';
+import  { useNavigation } from '@react-navigation/native';
 
 function Header(){
+    const navigation = useNavigation();
+
     const _goBack = () =>  console.log('go back');
     
     const _handleMore = () => console.log('Shown more');
@@ -19,7 +21,7 @@ function Header(){
     
     return (
       <Appbar.Header>
-        <Appbar.BackAction onPress={_goBack} />
+        <Appbar.BackAction onPress={()=> {navigation.goBack(null);}} />
         <Appbar.Content title="Brisk"/>
         <Searchbar placeholder="Search" onChangeText={onChangeSearch} value={searchQuery}/>
         <Appbar.Action icon="bell" onPress={_handleMore} />
@@ -30,7 +32,7 @@ function Header(){
           <Menu.Item title="Username" />
           <Divider />
           <Menu.Item onPress={() => {}} title="contact us" />
-          <Menu.Item onPress={() => {}} title="logout" />
+          <Menu.Item onPress={()=> navigation.navigate('Login')} title="logout" />
         </Menu>
       </Appbar.Header>
     );

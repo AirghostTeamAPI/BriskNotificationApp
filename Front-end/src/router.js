@@ -13,8 +13,8 @@ const Stack = createStackNavigator();
 function Routes(){
     return(
     <PaperProvider theme={theme}>
-        <NavigationContainer>
-            <Stack.Navigator screenOptions={{header:(props) => <Header {...props}/>}}>
+        <NavigationContainer >
+            <Stack.Navigator initialRouteName="Login" screenOptions={{header:(props) => <Header {...props}/>} }>
                 <Stack.Screen
                 name="Home"
                 component={Home}
@@ -23,7 +23,7 @@ function Routes(){
                 <Stack.Screen 
                 name="ListFol"
                 component={ListFol}
-                options={{ headerShown: false }}
+                options={{ headerShown: true }}
                 />
                 <Stack.Screen 
                     name="Login"
