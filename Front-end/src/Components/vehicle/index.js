@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Avatar, Card, IconButton } from 'react-native-paper';
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { Avatar, Card } from 'react-native-paper';
 import  { useNavigation } from '@react-navigation/native';
 
 function CardVehicle() {
@@ -11,8 +10,7 @@ function CardVehicle() {
             <Card.Title
                 title="veículo"
                 left={(props) => <Avatar.Icon {...props} icon="car" />}
-            />
-            
+            />          
         </Card>
     </div>
     );
