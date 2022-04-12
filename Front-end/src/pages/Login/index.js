@@ -1,16 +1,14 @@
 import React from "react";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { Button, Title, Subheading, TextInput } from 'react-native-paper';
-import { StyleSheet, View, TextInput as Input, Text, AsyncStorage } from 'react-native';
+import { StyleSheet, View, TextInput as Input, Text } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from 'react-native-paper';
 import api from "../../services/api";
 
 function Login (){
-  this.state =  {
-    errorMessage:null,
-  }
 
-  signIn = async () => {
+  const signIn = async () => {
     try {
       const response = await api.post('/api/user/auth', {login: 'jpedro', password: '501358'});
 
@@ -21,7 +19,6 @@ function Login (){
         ['@CodeApi:user', JSON.stringify(user)],
       ]);
     } catch(err) {
-      this.setState({errorMessage: response.data.error});
     }
   };
   const {colors} = useTheme();
@@ -87,15 +84,13 @@ function Login (){
             mode="outlined"
             label="Password"
             placeholder="Type something"
-            value={v}
             theme={{ roundness: 30 }}
             style = {styles.TextInput}
             left={<TextInput.Icon name="lock" style = {styles.Items} color = {colors.background}/>}
           />
-        <Button icon="" mode="contained" onPress={this.signIn} style = {styles.Button}>
+        <Button icon="" mode="contained" onPress={signIn} style = {styles.Button}>
           <Text style = {styles.TextButton}>Sign in</Text>
         </Button>
-        {!!this.state.errorMessage &&  <Text>{this.state.errorMessage} </Text>}
       </View >
       </>
     );}
