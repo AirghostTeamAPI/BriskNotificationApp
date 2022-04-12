@@ -5,29 +5,35 @@ import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
+import ListFol from './pages/ListFol';
+import Header from './Components/appBar';
 
 const Stack = createStackNavigator();
 
 function Routes(){
     return(
-        <PaperProvider theme={theme}>
-            <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen
-                    name="Home"
-                    component={Home}
-                    options={{ headerShown: false }}
-                    />
-                    <Stack.Screen 
+    <PaperProvider theme={theme}>
+        <NavigationContainer>
+            <Stack.Navigator screenOptions={{header:(props) => <Header {...props}/>}}>
+                <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{ headerShown: true }}
+                />
+                <Stack.Screen 
+                name="ListFol"
+                component={ListFol}
+                options={{ headerShown: false }}
+                />
+                <Stack.Screen 
                     name="Login"
                     component={Login}
                     options={{
                         headerShown: false
-                    }}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </PaperProvider>
+                 }}/>
+            </Stack.Navigator>
+        </NavigationContainer>
+    </PaperProvider>
     )
 }
 
@@ -40,7 +46,8 @@ const theme = {
       ...DefaultTheme.colors,
       primary: '#5A55F2',
       accent: '#6EEBF0',
-      details: '#C4C4C4',
-      background: '#ffffff'  
+      details: '#E4E4E4',
+      background: '#ffffff',
+      secondary: '#18BDC3'
     },
   };
