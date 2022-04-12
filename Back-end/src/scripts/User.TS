@@ -9,10 +9,10 @@ export async function importUserCsvFile() {
 
   result.query.forEach(element => {
     const newUser = new User({
-      Username: element.A,
-      Login: element.B,
-      Password: element.C,
-      Equipment: element.D,
+      username: element.A,
+      login: element.B,
+      password: element.C,
+      equipment: element.D
     })
 
     User.countDocuments({ name: element.A }, async function (err, count) {

@@ -4,6 +4,7 @@ import { createStackNavigator} from '@react-navigation/stack';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import Home from './pages/Home';
+import Login from './pages/Login';
 import ListFol from './pages/ListFol';
 import Header from './Components/appBar';
 
@@ -24,6 +25,12 @@ function Routes(){
                 component={ListFol}
                 options={{ headerShown: false }}
                 />
+                <Stack.Screen 
+                    name="Login"
+                    component={Login}
+                    options={{
+                        headerShown: false
+                 }}/>
             </Stack.Navigator>
         </NavigationContainer>
     </PaperProvider>
