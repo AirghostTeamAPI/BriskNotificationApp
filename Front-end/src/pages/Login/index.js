@@ -12,15 +12,23 @@ function Login (){
   const signIn = async () => {
     try {
       const response = await api.post('/api/user/auth',{login: 'jpedro', password: '501358'});
-      const { user, token } = response.data;
+      const { token } = response.data;
 
       await AsyncStorage.multiSet([
         ['@CodeApi:token', token],
-        ['@CodeApi:user', JSON.stringify(user)],
       ]);
+      
+      if (response.data == {}){
+        console.log("manda um erro lah");
+      } else {
+        console.log("");
+      }
     } catch(err) {
     }
   };
+
+
+
   const {colors} = useTheme();
     const styles = StyleSheet.create({
       TextInput: {
@@ -88,7 +96,7 @@ function Login (){
             style = {styles.TextInput}
             left={<TextInput.Icon name="lock" style = {styles.Items} color = {colors.background}/>}
           />
-        <Button icon="" mode="contained" onPress={()=> navigation.navigate('Home')} style = {styles.Button}>
+        <Button icon="" mode="contained" onPress={signIn} style = {styles.Button}>
           <Text style = {styles.TextButton}>Sign in</Text>
         </Button>
       </View >
