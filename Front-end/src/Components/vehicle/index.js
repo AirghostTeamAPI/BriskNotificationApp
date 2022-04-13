@@ -21,10 +21,10 @@ function CardVehicle(props) {
             console.log('deu erro para chamar a api');
         }
     };
-    
+
     return (
     <div>
-        <Card onPress={listEquipmentByUser}>         
+        <Card onPress={()=> navigation.navigate('ListFol')}>         
             <Card.Title
                 title= {props.equipament}
                 left={(props) => <Avatar.Icon {...props} icon="car" />}
