@@ -1,9 +1,9 @@
 # About Brisk Notification App
-An app that facilitates standard procedures for drivers in the event of a problem with their vehicle. In the application, he will always have warnings and recommendations notifications  coming directly from the responsible company related with your vehicles.
+An app that facilitates standard procedures for drivers in the event of a problem with their vehicle. In the application, he will always have warnings and recommendations notifications (named FOLs)  coming directly from the responsible company related with your vehicles.
 
 # Sumary
 
-|  |  |
+|  | Topics |
 | ---|---- | 
 | 1 | <a href="#Team">Team</a>|
 | 2 | <a href="#Technologies">Technologies</a>| 
@@ -47,26 +47,25 @@ An app that facilitates standard procedures for drivers in the event of a proble
     ![](https://media.discordapp.net/attachments/829118904005558292/963870080305881129/unknown.png)
 
 2. Inside the **'default.json'** file, add the following key:
-   * "mongoURI": *bank's credential (URI)*
+   * ``{"mongoURI": "bank's credential (URI)"}``
 
 3. Inside the directory '.\BriskNotificationApp\Back-end\', create a file **'.env'**
 
     ![](https://cdn.discordapp.com/attachments/829118904005558292/963874291542290462/unknown.png)
 
 4. Inside the **'.env'** file, add the following key:
-    * 'jwtSecret' = *jwt's secret token*
+    * ``{"jwtSecret": "jwt's secret token"}``
 
 5. Open a **new terminal** and execute this comands in sequence:
 
     * ``cd .\Back-end\``
     * ``yarn install``
-    *`` yarn server``
+    * `` yarn server``
 
 ## Front-end
 1. Open a **new terminal** and execute this comands in sequence:
     * ``cd .\Front-end\``
-    * ``npm install``
-    
+    * ``npm install``   
     * ``npm start``
 
 <br>
@@ -81,11 +80,6 @@ An app that facilitates standard procedures for drivers in the event of a proble
 
 ## Prototype
 
-![Login's Screen](https://media.discordapp.net/attachments/829118904005558292/963882693370712115/unknown.png?width=265&height=473)
+![Prototype's Screen](https://media.discordapp.net/attachments/829118904005558292/963885392204013598/unknown.png?width=1020&height=415)
 
-![List of Vehicles's Screen](https://cdn.discordapp.com/attachments/829118904005558292/963882442534551633/unknown.png)
-
-![List of FOLs's Screen](https://cdn.discordapp.com/attachments/829118904005558292/963883033998536744/unknown.png)
-
-![List of FOLs's Screen](https://media.discordapp.net/attachments/829118904005558292/963882636336570438/unknown.png?width=265&height=473)
 
