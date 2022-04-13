@@ -11,9 +11,17 @@ export default function CardFol() {
  const {colors} = useTheme();
     const styles = StyleSheet.create({
         view: {
-          backgroundColor: colors.details 
-            
+          backgroundColor: colors.details   
         },
+        card:{
+          marginLeft: "2%",
+          marginRight: "2%",
+          marginTop: "1%",
+          borderLeftWidth: "5px",
+          borderLeftColor: colors.accent,
+          backgroundColor: colors.background,
+          
+        }
       });
 
 
@@ -34,12 +42,10 @@ export default function CardFol() {
   };
   
     return(
-      <Card>
+      <Card style = {styles.card}>
       <Card.Title
-       title= {'Inoperative Clutch Clarification'} subtitle={"•MRC-003/10 •Mercedes"} style = {styles.view}
-     
-     
-      subtitleStyle = {{color: colors.secondary}}
+       title= {'Inoperative Clutch Clarification'} subtitle={"• MRC-003/10  • Mercedes"} 
+        subtitleStyle = {{color: colors.secondary, fontWeight: "bold"}}
       />
        <Button onPress={listByEquipment}> </Button>
      </Card>

@@ -10,26 +10,31 @@ export default function ListFol() {
  const {colors} = useTheme();
  const [selectedValue, setSelectedValue] = useState("Todos");
  const styles = StyleSheet.create({
-  view: {
-    backgroundColor: colors.primary,
-    color: colors.background
-  },
+  picker:{
+    marginLeft: "2%",
+    marginRight: "2%",
+    marginTop: "1%",
+    height: "25px",
+    borderColor: colors.accent,
+    borderWidth: "1px", 
+    borderRadius: "5px",
+    width: "150px"
+  }
 });
 
  return (
    <View>
-	  <Picker
+	  <Picker style = {styles.picker}
         selectedValue={selectedValue}
-        style={{ height: 25, width: 150 }}
         onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
       >
         <Picker.Item label="Todos" value="1" />
         <Picker.Item label="Porsche" value="2" />
-		<Picker.Item label="Mercedes" value="3" />
-		<Picker.Item label="Corvette" value="4" />
+        <Picker.Item label="Mercedes" value="3" />
+        <Picker.Item label="Corvette" value="4" />
       </Picker>
 
-<CardFol/>
+    <CardFol/>
 
     </View>
  )
