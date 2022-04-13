@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Picker } from 'react-native';
 import  { useNavigation } from '@react-navigation/native';
 import { useTheme ,Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
-import CardFol from '../../Components/FOL';
+import CardFol from '../../Components/Fol';
 
 
 export default function ListFol() {
