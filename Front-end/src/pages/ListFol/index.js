@@ -29,7 +29,7 @@ export default function ListFol() {
 		<Picker.Item label="Corvette" value="4" />
       </Picker>
 
-<CardFol/>
+      <CardFol/>
 
     </View>
  )

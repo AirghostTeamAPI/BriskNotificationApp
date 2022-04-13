@@ -14,55 +14,70 @@ export default function CardFol() {
       });
 
 
-  const listByEquipment = async () => 
+  const listFolByEquipment = async () => 
   { 
     const jwt = require("jsonwebtoken");
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTM5M2YzYWQxMzg4NmQ1Y2QzMzc3OCIsInVzZXJuYW1lIjoiSm_Do28gUGVkcm8iLCJlcXVpcG1lbnQiOiJNZXJjZWRlcywgQk1XLCBQb3JzY2hlIiwibG9naW4iOiJqcGVkcm8iLCJpYXQiOjE2NDk4MDk2NDl9.Q22NkF2IXl6Xa8oAeEXaMshK3Cx5jurT3AD0BgSduNs";
-  
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTM5M2YzYWQxMzg4NmQ1Y2QzMzc3OCIsInVzZXJuYW1lIjoiSm_Do28gUGVkcm8iLCJlcXVpcG1lbnQiOiJNZXJjZWRlcywgQk1XLCBQb3JzY2hlIiwibG9naW4iOiJqcGVkcm8iLCJpYXQiOjE2NDk4NTYzNTV9.8LCrejZ1XAwDtBpSnYiKWCCPRHtup12tr4HqqVi7KYs";
+    const config = {
+      headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  }
     const decoded = jwt.decode(token);
     const decodedEquipament = decoded.equipment;
     const stringDecodedEquipament = decodedEquipament.toString();
     const listEquipment = stringDecodedEquipament.split(",");
     
     try {  
-      if(listEquipment.length > 1){
+   /*   if(listEquipment.length > 1){
         for (let i = 0; i < listEquipment.length; i++) {
           const response = await api.get('/api/fols', {equipment: listEquipment[i]});
           const { equipment, title, issue_description} = response.data;
           return(
            <Card>
             <Card.Title
-             title= {'Inoperative Clutch Clarification'} subtitle={"•MRC-003/10 •Mercedes"} style = {styles.view}
-
+             title= 'teste' subtitle='• Teste • Teste' style = {styles.view}
+          //   title= {issue_description} subtitle={"• " + equipment + " • " + title} style = {styles.view}
             subtitleStyle = {{color: colors.secondary}}
             />
-             <Button onPress={listByEquipment}> </Button>
+             <Button onPress={listFolByEquipment}> </Button>
            </Card>
           
           );
         } 
         
       }    
-      else{
-        const response = await api.get('/api/fols', {equipment: listEquipment});
-        axios.get('/api/fols', { headers: { Authorization: token } })
-  .then(response => { console.log(response.data) })
+      else{ */
+        const response = await api.get('/api/fols', { equipment: listEquipment, Authorization: `Bearer ${token}` })
+        .then(response => { console.log(response.data) });
         const { equipment, title, issue_description} = response.data;
 
         return(
           <Card>
-          <Card.Title
-           title= {'Inoperative Clutch Clarification'} subtitle={"•MRC-003/10 •Mercedes"} style = {styles.view}
-          subtitleStyle = {{color: colors.secondary}}
-          />
-           <Button onPress={listByEquipment}> </Button>
-         </Card>
-        
-      );
-      }      
+           <Card.Title
+           
+            title= {issue_description} subtitle={"• " + equipment + " • " + title} style = {styles.view}
+           subtitleStyle = {{color: colors.secondary}}
+           />
+            <Button onPress={listFolByEquipment}> </Button>
+          </Card>
+         
+         );
+     // }      
      } catch(err) {
      }
   };
+  return(
+    <Card>
+     <Card.Title
+      title= 'teste' subtitle='• Teste • Teste' style = {styles.view}
+   //   title= {issue_description} subtitle={"• " + equipment + " • " + title} style = {styles.view}
+     subtitleStyle = {{color: colors.secondary}}
+     />
+      <Button onPress={listFolByEquipment}> </Button>
+    </Card>
+   
+   );
 }
 
