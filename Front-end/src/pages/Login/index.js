@@ -5,22 +5,24 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from 'react-native-paper';
 import api from "../../services/api";
 import  { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 function Login (){
   const navigation = useNavigation();
 
-  const signIn = async () => {
-    try {
-      const response = await api.post('/api/user/auth',{login: 'jpedro', password: '501358'});
-      const { user, token } = response.data;
-
+  const signIn = () => {
+    axios.post('http://localhost:5000/api/user/auth', {
+        login: 'jpedo', 
+        password: '501358'
+      }).then(async (response) => {const { jwtToken } = response.data;
       await AsyncStorage.multiSet([
-        ['@CodeApi:token', token],
-        ['@CodeApi:user', JSON.stringify(user)],
+        ['@CodeApi:token', jwtToken],
       ]);
-    } catch(err) {
-    }
+    }).then( () => ( AsyncStorage.getItem('@CodeApi:token')).then((token) => token=='undefined' ? console.log(token): navigation.navigate('Home'))).catch((error)=> {console.log(error)})
   };
+
+
+
   const {colors} = useTheme();
     const styles = StyleSheet.create({
       TextInput: {
@@ -69,9 +71,8 @@ function Login (){
       return(
       <>
       <View style = {styles.View}>
-        <center>
         <Subheading style = { styles.Text }>Welcome to</Subheading><br/>
-        <Title style = { styles.Title }>B R I S K</Title>  </center>
+        <Title style = { styles.Title }>B R I S K</Title>
           <TextInput
             mode="outlined"
             label="Username"
@@ -88,7 +89,7 @@ function Login (){
             style = {styles.TextInput}
             left={<TextInput.Icon name="lock" style = {styles.Items} color = {colors.background}/>}
           />
-        <Button icon="" mode="contained" onPress={()=> navigation.navigate('Home')} style = {styles.Button}>
+        <Button icon="" mode="contained" onPress={signIn} style = {styles.Button}>
           <Text style = {styles.TextButton}>Sign in</Text>
         </Button>
       </View >
