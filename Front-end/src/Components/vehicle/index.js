@@ -24,7 +24,7 @@ function CardVehicle(props) {
     <div>
         <Card style = {styles.card} onPress={()=> navigation.navigate('ListFol')}>         
             <Card.Title
-                title= {props.equipament}
+                title= {props.equipment}
                 left={(props) => <Avatar.Icon {...props} icon="car" />}
             />          
         </Card>
