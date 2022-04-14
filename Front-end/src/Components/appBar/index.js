@@ -12,10 +12,10 @@ function Header(){
         backgroundColor: colors.accentOpacity,
         margin:"5%",
         height: "70%",
+        width: "50%",
         borderColor: colors.accent,
         borderWidth: "1px",
         borderRadius: "10px",
-        width: "30%"
       },
       menu:{
         color: colors.primary
@@ -44,7 +44,7 @@ function Header(){
     return (
       <Appbar.Header>
         <Appbar.BackAction color = {colors.accent} onPress={()=> {navigation.goBack(null);}} />
-        <Appbar.Content title="Brisk"/>
+        <Appbar.Content title=""/>
         <Searchbar style = {styles.searchbar} placeholder="Search" onChangeText={onChangeSearch} value={searchQuery}/>
         <Appbar.Action color = {colors.accent} icon="bell" onPress={_handleMore} />
         <Menu style = {styles.menu}
