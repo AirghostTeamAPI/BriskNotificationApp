@@ -13,10 +13,16 @@ export default function ListFol() {
  const [value, setValue] = useState();
  const [selectedValue, setSelectedValue] = useState("Todos");
  const styles = StyleSheet.create({
-  view: {
-    backgroundColor: colors.primary,
-    color: colors.background
-  },
+  picker:{
+    marginLeft: "2%",
+    marginRight: "2%",
+    marginTop: "1%",
+    height: "25px",
+    borderColor: colors.accent,
+    borderWidth: "1px", 
+    borderRadius: "5px",
+    width: "150px"
+  }
 });
  
 const jwt = require("jsonwebtoken");
@@ -35,7 +41,7 @@ return (
   <View>
    <Picker
        selectedValue={selectedValue}
-       style={{ height: 25, width: 150 }}
+       style = {styles.picker}
        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
      >
        <Picker.Item label="Todos" value="1" />
