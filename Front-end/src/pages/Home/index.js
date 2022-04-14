@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import CardVehicle from '../../Components/vehicle';
 
 
