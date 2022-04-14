@@ -19,7 +19,7 @@ function Login (){
       await AsyncStorage.multiSet([
         ['@CodeApi:token', jwtToken],
       ]);
-    }).then( () => ( AsyncStorage.getItem('@CodeApi:token')).then((token) => token=='undefined' ? console.log(token): navigation.navigate('Home'))).catch((error)=> {console.log(error)})
+    }).then( () => ( AsyncStorage.getItem('@CodeApi:token')).then((token) => token=='undefined' ? console.log(token): navigation.navigate('Home', {token: token}))).catch((error)=> {console.log(error)})
   };
 
 
