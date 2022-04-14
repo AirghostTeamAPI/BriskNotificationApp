@@ -14,7 +14,7 @@ export default function Home({route}) {
       
       <View>
         {
-          listEquipment.map((value) => <CardVehicle equipment = {value}/>)
+          listEquipment.map((value) => <CardVehicle equipment = {value} token = {token}/>)
         }
       </View>
  )

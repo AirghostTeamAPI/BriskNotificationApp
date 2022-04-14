@@ -6,7 +6,7 @@ import CardFol from '../../Components/FOL';
 import api from "../../services/api";
 import Axios from 'axios';
 
-export default function ListFol() {
+export default function ListFol({route}) {
   
  const navigation = useNavigation();
  const {colors} = useTheme();
@@ -26,7 +26,7 @@ export default function ListFol() {
 });
  
 const jwt = require("jsonwebtoken");
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTM5M2YzYWQxMzg4NmQ1Y2QzMzc3OCIsInVzZXJuYW1lIjoiSm_Do28gUGVkcm8iLCJlcXVpcG1lbnQiOiJNZXJjZWRlcywgQk1XLCBQb3JzY2hlIiwibG9naW4iOiJqcGVkcm8iLCJpYXQiOjE2NDk4MDk2NDl9.Q22NkF2IXl6Xa8oAeEXaMshK3Cx5jurT3AD0BgSduNs";
+const token = route.params.token;
 const decoded = jwt.decode(token);
 const decodedEquipament = decoded.equipment;
 const stringDecodedEquipament = decodedEquipament.toString();

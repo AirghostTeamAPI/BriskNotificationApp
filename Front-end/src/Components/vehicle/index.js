@@ -19,10 +19,12 @@ function CardVehicle(props) {
       });
 
     const navigation = useNavigation();
+    const pToken = props.token;
 
     return (
+        
     <div>
-        <Card style = {styles.card} onPress={()=> navigation.navigate('ListFol')}>         
+        <Card style = {styles.card} onPress={()=> navigation.navigate('ListFol', {token: pToken})}>         
             <Card.Title
                 title= {props.equipment}
                 left={(props) => <Avatar.Icon {...props} icon="car" />}
