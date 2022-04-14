@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Avatar, Card, useTheme } from 'react-native-paper';
 import { StyleSheet} from 'react-native';
 import  { useNavigation } from '@react-navigation/native';
-import api from '../../services/api';
 
 function CardVehicle(props) {
     const {colors} = useTheme();
@@ -20,21 +19,6 @@ function CardVehicle(props) {
       });
 
     const navigation = useNavigation();
-
-    let _equipment;
-
-    const listEquipmentByUser = async () => 
-    { 
-        
-        try {            
-        const response = await api.get('/api/user', {login: 'jpedro'});
-        _equipment = response.data;
-        
-    
-        } catch(err) {
-            console.log('deu erro para chamar a api');
-        }
-    };
 
     return (
     <div>
