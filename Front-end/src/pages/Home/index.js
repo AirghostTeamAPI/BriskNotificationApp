@@ -1,22 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View } from 'react-native';
 import CardVehicle from '../../Components/vehicle';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Home() {
+  const [token, setToken] = useState(); 
+  AsyncStorage.getItem('@CodeApi:token').then((token) => setToken(token));
   const jwt = require("jsonwebtoken");
+  const [sToken, setSToken] = useState();
 
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTM5M2YzYWQxMzg4NmQ1Y2QzMzc3OCIsInVzZXJuYW1lIjoiSm_Do28gUGVkcm8iLCJlcXVpcG1lbnQiOiJNZXJjZWRlcywgQk1XLCBQb3JzY2hlIiwibG9naW4iOiJqcGVkcm8iLCJpYXQiOjE2NDk4MDk2NDl9.Q22NkF2IXl6Xa8oAeEXaMshK3Cx5jurT3AD0BgSduNs";
+  //AsyncStorage.getItem(token).then((sToken) => setSToken(sToken));
 
-  const decoded = jwt.decode(token);
-  const decodedEquipament = decoded.equipment;
-  const stringDecodedEquipament = decodedEquipament.toString();
-  const listEquipment = stringDecodedEquipament.split(",");
+  //const tokeen = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..Q22NkF2IXl6Xa8oAeEXaMshK3Cx5jurT3AD0BgSduNs";
+
+  console.log('HERE!!! ',JSON.stringify(token));
+
+  const decoded = jwt.decode(token,{json:true});
+  console.log('decoded!!! ',decoded);
+  //const decodedEquipment = decoded.equipment;
+  //console.log('decodedEq!!! ',decoded.equipment);
+  //const stringDecodedEquipment = decodedEquipment.toString();
+  //const listEquipment = stringDecodedEquipment.split(",");
 
  return (
+      
       <View>
         {
-          listEquipment.map((value) => <CardVehicle equipament = {value}/>)
+          //listEquipment.map((value) => <CardVehicle equipament = {value}/>)
         }
       </View>
  )
