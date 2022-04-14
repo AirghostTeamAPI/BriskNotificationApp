@@ -30,7 +30,7 @@ const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTM5M2YzYWQxMzg4
 const decoded = jwt.decode(token);
 const decodedEquipament = decoded.equipment;
 const stringDecodedEquipament = decodedEquipament.toString();
-const listEquipment = stringDecodedEquipament.split(",");  
+const listEquipment = stringDecodedEquipament.split(", ");  
 
 React.useEffect(() => {
    Axios.get(`http://localhost:5000/api/fols/?equipment=${listEquipment[0]}`, {headers: {
