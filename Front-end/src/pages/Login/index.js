@@ -5,26 +5,20 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from 'react-native-paper';
 import api from "../../services/api";
 import  { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 function Login (){
   const navigation = useNavigation();
 
-  const signIn = async () => {
-    try {
-      const response = await api.post('/api/user/auth',{login: 'jpedro', password: '501358'});
-      const { token } = response.data;
-
+  const signIn = () => {
+    axios.post('http://localhost:5000/api/user/auth', {
+        login: 'jpedro', 
+        password: '501358'
+      }).then(async (response) => {const { jwtToken } = response.data;
       await AsyncStorage.multiSet([
-        ['@CodeApi:token', token],
+        ['@CodeApi:token', jwtToken],
       ]);
-      
-      if (response.data == {}){
-        console.log("manda um erro lah");
-      } else {
-        console.log("");
-      }
-    } catch(err) {
-    }
+    }).catch((error)=> {console.log(error)})
   };
 
 
@@ -77,9 +71,8 @@ function Login (){
       return(
       <>
       <View style = {styles.View}>
-        <center>
         <Subheading style = { styles.Text }>Welcome to</Subheading><br/>
-        <Title style = { styles.Title }>B R I S K</Title>  </center>
+        <Title style = { styles.Title }>B R I S K</Title>
           <TextInput
             mode="outlined"
             label="Username"
