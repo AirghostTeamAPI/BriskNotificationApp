@@ -12,13 +12,13 @@ function Login (){
 
   const signIn = () => {
     axios.post('http://localhost:5000/api/user/auth', {
-        login: 'jpedro', 
+        login: 'jpedo', 
         password: '501358'
       }).then(async (response) => {const { jwtToken } = response.data;
       await AsyncStorage.multiSet([
         ['@CodeApi:token', jwtToken],
       ]);
-    }).catch((error)=> {console.log(error)})
+    }).then( () => ( AsyncStorage.getItem('@CodeApi:token')).then((token) => token=='undefined' ? console.log(token): navigation.navigate('Home'))).catch((error)=> {console.log(error)})
   };
 
 
