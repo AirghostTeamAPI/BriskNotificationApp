@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Button, Title, Subheading, TextInput } from 'react-native-paper';
 import { StyleSheet, View, TextInput as Input, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -9,11 +9,12 @@ import axios from 'axios';
 
 function Login (){
   const navigation = useNavigation();
-
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const signIn = () => {
     axios.post('http://localhost:5000/api/user/auth', {
-        login: 'jpedo', 
-        password: '501358'
+        login: username, 
+        password: password
       }).then(async (response) => {const { jwtToken } = response.data;
       await AsyncStorage.multiSet([
         ['@CodeApi:token', jwtToken],
@@ -71,11 +72,15 @@ function Login (){
       return(
       <>
       <View style = {styles.View}>
+      <center>
         <Subheading style = { styles.Text }>Welcome to</Subheading><br/>
+        
         <Title style = { styles.Title }>B R I S K</Title>
+        </center>
           <TextInput
             mode="outlined"
             label="Username"
+            onChange={event => setUsername(event.target.value)}
             placeholder="Type something"
             theme={{ roundness: 30 }}
             style = {styles.TextInput}
@@ -86,6 +91,7 @@ function Login (){
             label="Password"
             placeholder="Type something"
             theme={{ roundness: 30 }}
+            onChange={event => setPassword(event.target.value)}
             style = {styles.TextInput}
             left={<TextInput.Icon name="lock" style = {styles.Items} color = {colors.background}/>}
           />
