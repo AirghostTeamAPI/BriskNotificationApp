@@ -13,13 +13,12 @@ export default function CardFol(props) {
             
         },
       });
-
   return(
     <Card>
      <Card.Title
-   //   title= 'teste' subtitle='• Teste • Teste' style = {styles.view}
-      title= {prop.issue_description} subtitle={"• " + props.equipment + " • " + prop.title} style = {styles.view}
-     subtitleStyle = {{color: colors.secondary}}
+      title= 'teste' subtitle='• Teste • Teste' style = {styles.view}
+     // title= {prop.issue_description} subtitle={"• " + props.equipment + " • " + prop.title} style = {styles.view}
+     //subtitleStyle = {{color: colors.secondary}}
      />   
     </Card>
    
