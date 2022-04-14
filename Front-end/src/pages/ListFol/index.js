@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Picker } from 'react-native';
+import { View, StyleSheet, Picker } from 'react-native';
 import  { useNavigation } from '@react-navigation/native';
-import { useTheme ,Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import CardFol from '../../Components/FOL';
 import api from "../../services/api";
 import Axios from 'axios';
@@ -46,8 +46,8 @@ return (
      >
        <Picker.Item label="Todos" value="1" />
        <Picker.Item label="Porsche" value="2" />
-   <Picker.Item label="Mercedes" value="3" />
-   <Picker.Item label="Corvette" value="4" />
+        <Picker.Item label="Mercedes" value="3" />
+        <Picker.Item label="Corvette" value="4" />
      </Picker>
         {
            value?.map((linha)=><CardFol linha={linha}/>)

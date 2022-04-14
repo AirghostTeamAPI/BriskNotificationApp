@@ -24,7 +24,7 @@ export default function CardFol(props) {
   return(
     <Card style = {styles.card}>
       <Card.Title title= 'teste' subtitle='• Teste • Teste' 
-      style = {styles.view} subtitleStyle = {{color: colors.secondary, fontWeight: "bold"} 
+      style = {styles.view} subtitleStyle = {{color: colors.secondary, fontWeight: "bold"}} 
      // title= {prop.issue_description} subtitle={"• " + props.equipment + " • " + prop.title} style = {styles.view}
      //subtitleStyle = {{color: colors.secondary}}   
      />
