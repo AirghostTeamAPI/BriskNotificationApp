@@ -1,11 +1,13 @@
 import { Appbar, Searchbar, Menu, Divider, useTheme  } from 'react-native-paper';
-import * as React from 'react';
+import  React, { useState } from 'react';
 import { StyleSheet} from 'react-native';
 import  { useNavigation } from '@react-navigation/native';
+import Axios from  'axios';
+import ModalDropdown from 'react-native-modal-dropdown';
 
 function Header(props){
     const {colors} = useTheme();
-
+    const [value, setValue] = useState();
     const styles = StyleSheet.create({
       searchbar:{
         color: colors.accent,
@@ -31,21 +33,32 @@ function Header(props){
     
     const _handleMore = () => console.log('Shown more');
 
-    const [searchQuery, setSearchQuery] = React.useState('');
-
-    const onChangeSearch = query => setSearchQuery(query);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const [visible, setVisible] = React.useState(false);
 
     const openMenu = () => setVisible(true);
 
     const closeMenu = () => setVisible(false);
+
+    const onChangeSearch = query => setSearchQuery(query);
+
+
+    function searchFolByKeyWord(){
+        Axios.get(`http://localhost:5000/api/fols/?search=${searchQuery}`, {headers: {
+        "Authorization": `Bearer ${props.token}`}}).then((response)=>
+        {setValue(response.data)});
+    }
+
+
     if(props.backAction){
     return (
       <Appbar.Header>
         <Appbar.BackAction color = {colors.accent} onPress={()=> {navigation.goBack(null);}} />
         <Appbar.Content title=""/>
-        <Searchbar style = {styles.searchbar} placeholder="Search" onChangeText={onChangeSearch} value={searchQuery}/>
+
+        <Searchbar style = {styles.searchbar} value={searchQuery} placeholder="Search keyword" onChangeText={onChangeSearch} onIconPress={searchFolByKeyWord}/>
+
         <Appbar.Action color = {colors.accent} icon="bell" onPress={_handleMore} />
         <Menu style = {styles.menu}
           visible={visible}
