@@ -11,6 +11,7 @@ function Login (){
   const [secure, setSecure] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [menssage, setMenssage] = useState('');
   const signIn = () => {
     axios.post('http://localhost:5000/api/user/auth', {
         login: username, 
@@ -21,7 +22,7 @@ function Login (){
       ]);
     }).then( () => ( AsyncStorage.getItem('@CodeApi:token'))
     .then(
-      (token) => token=='undefined' ? console.log(token): navigation.navigate('Home', {token: token}
+      (token) => token=='undefined' ? setMenssage('Username or password is invalid'): navigation.navigate('Home', {token: token}
       )
       )
       ).catch((error)=> {console.log(error)})
@@ -32,17 +33,18 @@ function Login (){
   const {colors} = useTheme();
     const styles = StyleSheet.create({
       TextInput: {
-        backgroundColor: colors.backdrop,
+        backgroundColor: colors.accentOpacity,
         opacity: "80%",
         marginBottom: 15,
         width: "70%",
         alignSelf: "center",
         color: "#fffff",
-        height: 50
+        height: 50,
+        borderColor: colors.background,
       },
       Items: {
         top: 5,
-        color: "#fff",
+        color: colors.accent,
       },
       View:{
         backgroundColor: colors.primary,
@@ -72,6 +74,10 @@ function Login (){
         fontStyle: "normal",
         fontWeight: "bold",
         paddingBottom: 30,
+      },
+      Error: {
+        fontSize: 24,
+        color: "red",
       }
     });
       return(
@@ -86,25 +92,29 @@ function Login (){
             mode="outlined"
             label="Username"
             onChange={event => setUsername(event.target.value)}
+            value={username}
             placeholder="Type your login"
             theme={{ roundness: 30 }}
             style = {styles.TextInput}
-            left={<TextInput.Icon name="account" style = {styles.Items} color = {colors.background}/>}
+            left={<TextInput.Icon name="account" style = {styles.Items} color = {colors.accent}/>}
           />
           <TextInput
             mode="outlined"
             label="Password"
             placeholder="Type your password"
-            theme={{ roundness: 30 }}
+            theme={{ roundness: 30, borderWidth: 1, borderColor: colors.accent}}
             onChange={event => setPassword(event.target.value)}
             style = {styles.TextInput}
             secureTextEntry={secure}
-            right={<TextInput.Icon name="eye" style = {styles.Items} color = {colors.background} onPress={() => setSecure(!secure)}/>}
-            left={<TextInput.Icon name="lock" style = {styles.Items} color = {colors.background}/>}
+            right={<TextInput.Icon name="eye" style = {styles.Items} color = {colors.accent} onPress={() => setSecure(!secure)}/>}
+            left={<TextInput.Icon name="lock" style = {styles.Items} color = {colors.accent}/>}
           />
         <Button icon="" mode="contained" onPress={signIn} style = {styles.Button}>
           <Text style = {styles.TextButton}>Sign in</Text>
         </Button>
+        <center>
+        <Text style={styles.Error}>{menssage}</Text>
+        </center>
       </View >
       </>
     );}
