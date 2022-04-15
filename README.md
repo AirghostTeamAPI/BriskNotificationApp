@@ -18,7 +18,7 @@ An app that facilitates standard procedures for drivers in the event of a proble
 
 [![Github Badge](https://img.shields.io/badge/DEV-Edryan_Maciel-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/edryan25)
 
-[![Github Badge](https://img.shields.io/badge/DEV-Felipe_Silva-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.comFfelipe-Ssilva)
+[![Github Badge](https://img.shields.io/badge/DEV-Felipe_Silva-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Ffelipe-Ssilva)
 
 [![Github Badge](https://img.shields.io/badge/DEV-Gabriel_Teixeira-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Gabrieltg7)
 
