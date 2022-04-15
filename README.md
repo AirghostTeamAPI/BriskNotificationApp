@@ -83,10 +83,13 @@ In this First Sprint, our focus was to list the **vehicles** and the **FOLs** ac
 | ----------- | ---- |
 | **List user vehicles** :heavy_check_mark:| return to user a list of their vehicles|
 | **List FOLs by vehicle** :heavy_check_mark:| return to user a list of FOLs related with the selected vehicle|
-| **List FOLs by keyword** :heavy_check_mark:| return to user a list of FOLs related with the writed keyword in search-bar|
 
 ## Prototype
 
 ![Prototype's Screen](https://media.discordapp.net/attachments/829118904005558292/964349343358386256/unknown.png?width=1020&height=418)
 
 ## Demo video
+
+https://user-images.githubusercontent.com/62018632/163511036-9d59f5da-16ba-4b91-8cce-a8a7a83cdcaf.mp4
+
+
