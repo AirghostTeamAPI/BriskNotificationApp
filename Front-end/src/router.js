@@ -18,12 +18,12 @@ function Routes(){
                 <Stack.Screen
                 name="Home"
                 component={Home}
-                options={{ headerShown: true }}
+                options={{ headerShown: false }}
                 />
                 <Stack.Screen 
                 name="ListFol"
                 component={ListFol}
-                options={{ headerShown: true }}
+                options={{ headerShown: false }}
                 />
                 <Stack.Screen 
                     name="Login"
@@ -46,6 +46,7 @@ const theme = {
       ...DefaultTheme.colors,
       primary: '#5A55F2',
       accent: '#6EEBF0',
+      accentOpacity: '#5B7CF0',
       details: '#E4E4E4',
       background: '#ffffff',
       secondary: '#18BDC3'

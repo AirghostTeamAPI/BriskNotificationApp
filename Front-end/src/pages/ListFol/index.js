@@ -1,37 +1,65 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Picker } from 'react-native';
+import { View, StyleSheet, Picker } from 'react-native';
 import  { useNavigation } from '@react-navigation/native';
-import { useTheme ,Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import CardFol from '../../Components/FOL';
+import Axios from 'axios';
+import Header from '../../Components/appBar';
 
-
-export default function ListFol() {
+export default function ListFol({route}) {
+  
  const navigation = useNavigation();
  const {colors} = useTheme();
- const [selectedValue, setSelectedValue] = useState("Todos");
+ const [value, setValue] = useState();
  const styles = StyleSheet.create({
-  view: {
-    backgroundColor: colors.primary,
-    color: colors.background
-  },
+  picker:{
+    marginLeft: "2%",
+    marginRight: "2%",
+    marginTop: "1%",
+    height: "25px",
+    borderColor: colors.accent,
+    borderWidth: "1px", 
+    borderRadius: "5px",
+    width: "150px"
+  }
 });
+const jwt = require("jsonwebtoken");
+const token = route.params.token;
+const selectedEquipmentParam = route.params.selectedEquipmentParam;
+const decoded = jwt.decode(token);
+const decodedEquipament = decoded.equipment;
+const stringDecodedEquipament = decodedEquipament.toString();
+const listEquipment = stringDecodedEquipament.split(", "); 
+const selectedEquipment = selectedEquipmentParam.trim(); 
 
- return (
-   <View>
-	  <Picker
-        selectedValue={selectedValue}
-        style={{ height: 25, width: 150 }}
-        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-      >
-        <Picker.Item label="Todos" value="1" />
-        <Picker.Item label="Porsche" value="2" />
-		<Picker.Item label="Mercedes" value="3" />
-		<Picker.Item label="Corvette" value="4" />
-      </Picker>
+React.useEffect(() => {
+  Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedEquipment}`, {headers: {
+    "Authorization": `Bearer ${token}`}}).then((response)=>
+  {setValue(response.data)});
+},[]);
 
-<CardFol/>
-
-    </View>
- )
+function listFolBySelectedEquipment(selectedValue){
+  Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedValue}`, {headers: {
+      "Authorization": `Bearer ${token}`}}).then((response)=>
+    {setValue(response.data)});
+   
 }
 
+return (
+  <View>
+    <Header backAction={true} username={decoded.username}/>
+   <Picker
+       style = {styles.picker}
+       onValueChange={(itemValue) => (listFolBySelectedEquipment(itemValue))}
+     >
+         <Picker.Item label="Select" value="null" />
+       {      
+        listEquipment.map((eq) => <Picker.Item label={eq} value={eq} />)
+      }
+     </Picker>
+        {
+           value?.map((linha)=><CardFol linha={linha}/>)
+        }
+      </View>
+  )
+}

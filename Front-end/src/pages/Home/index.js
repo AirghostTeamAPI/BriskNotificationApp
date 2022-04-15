@@ -1,20 +1,23 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
-import  { useNavigation } from '@react-navigation/native';
-import { useTheme } from 'react-native-paper';
+import React, {useState} from 'react';
+import { View } from 'react-native';
 import CardVehicle from '../../Components/vehicle';
+import Header from '../../Components/appBar';
 
-export default function Home() {
- const navigation = useNavigation();
- const {colors} = useTheme();
- const styles = StyleSheet.create({
-  view: {
-    backgroundColor: colors.accent,
-  },
-});
+export default function Home({route}) {
+  const { token } = route.params;
+    const jwt = require("jsonwebtoken");
+    const decoded = jwt.decode(token, {json:true});
+    const decodedEquipment = decoded.equipment;
+  const stringDecodedEquipment = decodedEquipment.toString();
+  const listEquipment = stringDecodedEquipment.split(",");
+
  return (
+      
       <View>
-        <CardVehicle style = {styles.view}/>
+        <Header username= {decoded.username} backAction={false}/>
+        {
+          listEquipment.map((value) => <CardVehicle equipment = {value} token = {token}/>)
+        }
       </View>
  )
 }
