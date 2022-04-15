@@ -24,13 +24,17 @@ export default function ListFol({route}) {
 });
 const jwt = require("jsonwebtoken");
 const token = route.params.token;
+const selectedEquipmentParam = route.params.selectedEquipmentParam;
 const decoded = jwt.decode(token);
 const decodedEquipament = decoded.equipment;
 const stringDecodedEquipament = decodedEquipament.toString();
 const listEquipment = stringDecodedEquipament.split(", "); 
+const selectedEquipment = selectedEquipmentParam.trim(); 
+
+console.log(selectedEquipment);
 
 React.useEffect(() => {
-  Axios.get(`http://localhost:5000/api/fols/?equipment=${listEquipment[0]}`, {headers: {
+  Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedEquipment}`, {headers: {
     "Authorization": `Bearer ${token}`}}).then((response)=>
   {setValue(response.data)});
 },[]);
@@ -48,7 +52,8 @@ return (
        style = {styles.picker}
        onValueChange={(itemValue) => (listFolBySelectedEquipment(itemValue))}
      >
-       {
+         <Picker.Item label="Selecione" value="" />
+       {      
         listEquipment.map((eq) => <Picker.Item label={eq} value={eq} />)
       }
      </Picker>
