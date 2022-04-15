@@ -4,6 +4,7 @@ import  { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'react-native-paper';
 import CardFol from '../../Components/FOL';
 import Axios from 'axios';
+import Header from '../../Components/appBar';
 
 export default function ListFol({route}) {
   
@@ -31,8 +32,6 @@ const stringDecodedEquipament = decodedEquipament.toString();
 const listEquipment = stringDecodedEquipament.split(", "); 
 const selectedEquipment = selectedEquipmentParam.trim(); 
 
-console.log(selectedEquipment);
-
 React.useEffect(() => {
   Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedEquipment}`, {headers: {
     "Authorization": `Bearer ${token}`}}).then((response)=>
@@ -48,6 +47,7 @@ function listFolBySelectedEquipment(selectedValue){
 
 return (
   <View>
+    <Header backAction={true} username={decoded.username}/>
    <Picker
        style = {styles.picker}
        onValueChange={(itemValue) => (listFolBySelectedEquipment(itemValue))}

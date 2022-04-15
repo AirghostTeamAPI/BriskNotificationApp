@@ -18,12 +18,12 @@ function Routes(){
                 <Stack.Screen
                 name="Home"
                 component={Home}
-                options={{ headerShown: true }}
+                options={{ headerShown: false }}
                 />
                 <Stack.Screen 
                 name="ListFol"
                 component={ListFol}
-                options={{ headerShown: true }}
+                options={{ headerShown: false }}
                 />
                 <Stack.Screen 
                     name="Login"

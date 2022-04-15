@@ -3,7 +3,7 @@ import * as React from 'react';
 import { StyleSheet} from 'react-native';
 import  { useNavigation } from '@react-navigation/native';
 
-function Header(){
+function Header(props){
     const {colors} = useTheme();
 
     const styles = StyleSheet.create({
@@ -40,7 +40,7 @@ function Header(){
     const openMenu = () => setVisible(true);
 
     const closeMenu = () => setVisible(false);
-    
+    if(props.backAction){
     return (
       <Appbar.Header>
         <Appbar.BackAction color = {colors.accent} onPress={()=> {navigation.goBack(null);}} />
@@ -51,13 +51,30 @@ function Header(){
           visible={visible}
           onDismiss={closeMenu}
           anchor={<Appbar.Action color = {colors.accent} icon="dots-vertical" onPress={openMenu} />}>
-          <Menu.Item title="Username" />
+          <Menu.Item title={props.username} />
           <Divider />
           <Menu.Item onPress={() => {}} title="contact us" />
           <Menu.Item onPress={()=> navigation.navigate('Login')} title="logout" />
         </Menu>
       </Appbar.Header>
-    );
+    )}
+    else{
+      return (
+        <Appbar.Header>
+          <Appbar.Content title="Home"/>
+          <Appbar.Action color = {colors.accent} icon="bell" onPress={_handleMore} />
+          <Menu style = {styles.menu}
+            visible={visible}
+            onDismiss={closeMenu}
+            anchor={<Appbar.Action color = {colors.accent} icon="dots-vertical" onPress={openMenu} />}>
+            <Menu.Item title={props.username} />
+            <Divider />
+            <Menu.Item onPress={() => {}} title="contact us" />
+            <Menu.Item onPress={()=> navigation.navigate('Login')} title="logout" />
+          </Menu>
+        </Appbar.Header>
+      )
+    }
   };
   
   export default Header;

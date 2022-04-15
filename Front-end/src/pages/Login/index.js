@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import { Button, Title, Subheading, TextInput } from 'react-native-paper';
-import { StyleSheet, View, TextInput as Input, Text } from 'react-native';
+import { StyleSheet, View, TextInput as Input, Text, Icon } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from 'react-native-paper';
-import api from "../../services/api";
 import  { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
 function Login (){
   const navigation = useNavigation();
+  const [secure, setSecure] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const signIn = () => {
@@ -19,7 +19,12 @@ function Login (){
       await AsyncStorage.multiSet([
         ['@CodeApi:token', jwtToken],
       ]);
-    }).then( () => ( AsyncStorage.getItem('@CodeApi:token')).then((token) => token=='undefined' ? console.log(token): navigation.navigate('Home', {token: token}))).catch((error)=> {console.log(error)})
+    }).then( () => ( AsyncStorage.getItem('@CodeApi:token'))
+    .then(
+      (token) => token=='undefined' ? console.log(token): navigation.navigate('Home', {token: token}
+      )
+      )
+      ).catch((error)=> {console.log(error)})
   };
 
 
@@ -27,7 +32,7 @@ function Login (){
   const {colors} = useTheme();
     const styles = StyleSheet.create({
       TextInput: {
-        backgroundColor: "rgba(110, 235, 240, 0.3)",
+        backgroundColor: colors.backdrop,
         opacity: "80%",
         marginBottom: 15,
         width: "70%",
@@ -81,7 +86,7 @@ function Login (){
             mode="outlined"
             label="Username"
             onChange={event => setUsername(event.target.value)}
-            placeholder="Type something"
+            placeholder="Type your login"
             theme={{ roundness: 30 }}
             style = {styles.TextInput}
             left={<TextInput.Icon name="account" style = {styles.Items} color = {colors.background}/>}
@@ -89,10 +94,12 @@ function Login (){
           <TextInput
             mode="outlined"
             label="Password"
-            placeholder="Type something"
+            placeholder="Type your password"
             theme={{ roundness: 30 }}
             onChange={event => setPassword(event.target.value)}
             style = {styles.TextInput}
+            secureTextEntry={secure}
+            right={<TextInput.Icon name="eye" style = {styles.Items} color = {colors.background} onPress={() => setSecure(!secure)}/>}
             left={<TextInput.Icon name="lock" style = {styles.Items} color = {colors.background}/>}
           />
         <Button icon="" mode="contained" onPress={signIn} style = {styles.Button}>
