@@ -52,7 +52,7 @@ return (
        style = {styles.picker}
        onValueChange={(itemValue) => (listFolBySelectedEquipment(itemValue))}
      >
-         <Picker.Item label="Selecione" value="" />
+         <Picker.Item label="Select" value="" />
        {      
         listEquipment.map((eq) => <Picker.Item label={eq} value={eq} />)
       }
