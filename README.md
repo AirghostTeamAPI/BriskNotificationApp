@@ -87,6 +87,6 @@ In this First Sprint, our focus was to list the **vehicles** and the **FOLs** ac
 
 ## Prototype
 
-![Prototype's Screen](https://media.discordapp.net/attachments/829118904005558292/963885392204013598/unknown.png?width=1020&height=415)
+![Prototype's Screen](https://media.discordapp.net/attachments/829118904005558292/964349343358386256/unknown.png?width=1020&height=418)
 
 ## Demo video
