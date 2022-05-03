@@ -15,6 +15,9 @@ const UserSchema: Schema = new Schema({
   equipment: {
     type: String,
     required: true
+  },
+  pushToken: {
+    type: String
   }
 });
 
