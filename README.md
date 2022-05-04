@@ -3,6 +3,16 @@ An app that facilitates standard procedures for drivers in the event of a proble
 
 [Backlog](https://docs.google.com/document/d/1KGt6vxyh9wKg358B0cJNcSXMkGuCCUdJo2MwmlL61Q4/edit?usp=drivesdk)
 
+| User stories | Description|
+| ----|---- |
+|US001|Login|
+|US002|User registration|
+|US003|FOL's consultation|
+|US004|FOL’s notification|
+|US005|FOL’s reading|
+|US006|FOL’s Download|
+|US007|Registro de chamados|
+
 # Sumary
 
 |  | Topics |
