@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Picker } from 'react-native';
 import  { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'react-native-paper';
-import CardFol from '../../Components/FOL';
+import CardFol from '../../Components/Fol';
 import Axios from 'axios';
 import Header from '../../Components/appBar';
 
