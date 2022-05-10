@@ -1,65 +1,69 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Picker } from 'react-native';
-import  { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'react-native-paper';
-import CardFol from '../../Components/FOL';
+import CardFol from '../../Components/Fol'
 import Axios from 'axios';
 import Header from '../../Components/appBar';
 
-export default function ListFol({route}) {
-  
- const navigation = useNavigation();
- const {colors} = useTheme();
- const [value, setValue] = useState();
- const styles = StyleSheet.create({
-  picker:{
-    marginLeft: "2%",
-    marginRight: "2%",
-    marginTop: "1%",
-    height: "25px",
-    borderColor: colors.accent,
-    borderWidth: "1px", 
-    borderRadius: "5px",
-    width: "150px"
-  }
-});
-const jwt = require("jsonwebtoken");
-const token = route.params.token;
-const selectedEquipmentParam = route.params.selectedEquipmentParam;
-const decoded = jwt.decode(token);
-const decodedEquipament = decoded.equipment;
-const stringDecodedEquipament = decodedEquipament.toString();
-const listEquipment = stringDecodedEquipament.split(", "); 
-const selectedEquipment = selectedEquipmentParam.trim(); 
+export default function ListFol({ route }) {
 
-React.useEffect(() => {
-  Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedEquipment}`, {headers: {
-    "Authorization": `Bearer ${token}`}}).then((response)=>
-  {setValue(response.data)});
-},[]);
+  const navigation = useNavigation();
+  const { colors } = useTheme();
+  const [value, setValue] = useState();
+  const styles = StyleSheet.create({
+    picker: {
+      marginLeft: "2%",
+      marginRight: "2%",
+      marginTop: "1%",
+      height: "25px",
+      borderColor: colors.accent,
+      borderWidth: "1px",
+      borderRadius: 5,
+      width: "150px"
+    }
+  });
+  const jwt_decode = require("jwt-decode");
+  const token = route.params.token;
+  const selectedEquipmentParam = route.params.selectedEquipmentParam;
+  const decoded = jwt_decode(token);
+  const decodedEquipament = decoded.equipment;
+  const stringDecodedEquipament = decodedEquipament.toString();
+  const listEquipment = stringDecodedEquipament.split(", ");
+  const selectedEquipment = selectedEquipmentParam.trim();
 
-function listFolBySelectedEquipment(selectedValue){
-  Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedValue}`, {headers: {
-      "Authorization": `Bearer ${token}`}}).then((response)=>
-    {setValue(response.data)});
-   
-}
-
-return (
-  <View>
-    <Header backAction={true} username={decoded.username}/>
-   <Picker
-       style = {styles.picker}
-       onValueChange={(itemValue) => (listFolBySelectedEquipment(itemValue))}
-     >
-         <Picker.Item label="Select" value="null" />
-       {      
-        listEquipment.map((eq) => <Picker.Item label={eq} value={eq} />)
+  React.useEffect(() => {
+    Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedEquipment}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
       }
-     </Picker>
+    }).then((response) => { setValue(response.data) });
+  }, []);
+
+  function listFolBySelectedEquipment(selectedValue) {
+    Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedValue}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    }).then((response) => { setValue(response.data) });
+
+  }
+
+  return (
+    <View>
+      <Header backAction={true} username={decoded.username} />
+      <Picker
+        style={styles.picker}
+        onValueChange={(itemValue) => (listFolBySelectedEquipment(itemValue))}
+      >
+        <Picker.Item label="Select" value="null" />
         {
-           value?.map((linha)=><CardFol linha={linha}/>)
+          listEquipment.map((eq) => <Picker.Item label={eq} value={eq} />)
         }
-      </View>
+      </Picker>
+      {
+        value?.map((linha) => <CardFol linha={linha} />)
+      }
+    </View>
   )
 }

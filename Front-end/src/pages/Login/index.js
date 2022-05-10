@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
 import { Button, Title, Subheading, TextInput } from 'react-native-paper';
-import { StyleSheet, View, TextInput as Input, Text, Icon } from 'react-native';
+import { StyleSheet, View, TextInput as Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
-import App from "../../../App";
 
 async function registerForPushNotificationsAsync() {
   let pushToken;
@@ -75,11 +76,11 @@ function Login() {
   const styles = StyleSheet.create({
     TextInput: {
       backgroundColor: colors.accentOpacity,
-      opacity: "80%",
+      opacity: 80,
       marginBottom: 15,
       width: "70%",
       alignSelf: "center",
-      color: "#fffff",
+      color: "#ffffff",
       height: 50,
       borderColor: colors.background,
     },
@@ -94,7 +95,7 @@ function Login() {
     Button: {
       backgroundColor: "#ffffff",
       width: "70%",
-      borderRadius: "30px",
+      borderRadius: 30,
       alignSelf: "center",
       color: "#5A55F2",
     },
@@ -111,7 +112,6 @@ function Login() {
     Title: {
       fontSize: 36,
       color: "#ffffff",
-      fontFamily: 'tahoma',
       fontStyle: "normal",
       fontWeight: "bold",
       paddingBottom: 30,
@@ -124,17 +124,15 @@ function Login() {
   return (
     <>
       <View style={styles.View}>
-        <center>
-          <Subheading style={styles.Text}>Welcome to</Subheading><br />
+        <Subheading style={styles.Text}>Welcome to</Subheading>
 
-          <Title style={styles.Title}>B R I S K</Title>
-        </center>
+        <Title style={styles.Title}>B R I S K</Title>
         <TextInput
           mode="outlined"
-          label="Username"
+          label={expoPushToken}
           onChange={event => setUsername(event.target.value)}
           value={username}
-          placeholder= {expoPushToken}
+          placeholder={expoPushToken}
           theme={{ roundness: 30 }}
           style={styles.TextInput}
           left={<TextInput.Icon name="account" style={styles.Items} color={colors.accent} />}
@@ -153,9 +151,9 @@ function Login() {
         <Button icon="" mode="contained" onPress={signIn} style={styles.Button}>
           <Text style={styles.TextButton}>Sign in</Text>
         </Button>
-        <center>
-          <Text style={styles.Error}>{menssage}</Text>
-        </center>
+
+        <Text style={styles.Error}>{menssage}</Text>
+
       </View >
     </>
   );

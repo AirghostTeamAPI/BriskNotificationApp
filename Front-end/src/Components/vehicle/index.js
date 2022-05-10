@@ -1,36 +1,36 @@
-import * as React from 'react';
+import React from 'react';
 import { Avatar, Card, useTheme } from 'react-native-paper';
-import { StyleSheet} from 'react-native';
-import  { useNavigation } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 function CardVehicle(props) {
-    const {colors} = useTheme();
+    const { colors } = useTheme();
 
     const styles = StyleSheet.create({
-        card:{
-          marginLeft: "2%",
-          marginRight: "2%",
-          marginTop: "1%",
-          borderLeftWidth: "5px",
-          borderLeftColor: colors.accent,
-          backgroundColor: colors.background
+        card: {
+            marginLeft: "2%",
+            marginRight: "2%",
+            marginTop: "1%",
+            borderLeftWidth: "5px",
+            borderLeftColor: colors.accent,
+            backgroundColor: colors.background
         }
-  
-      });
+
+    });
 
     const navigation = useNavigation();
     const pToken = props.token;
 
     return (
-        
-    <div>
-        <Card style = {styles.card} onPress={()=> navigation.navigate('ListFol', {token: pToken, selectedEquipmentParam: props.equipment})}>         
-            <Card.Title
-                title= {props.equipment}
-                left={(props) => <Avatar.Icon {...props} icon="car" />}
-            />          
-        </Card>
-    </div>
+
+        <div>
+            <Card style={styles.card} onPress={() => navigation.navigate('ListFol', { token: pToken, selectedEquipmentParam: props.equipment })}>
+                <Card.Title
+                    title={props.equipment}
+                    left={(props) => <Avatar.Icon {...props} icon="car" />}
+                />
+            </Card>
+        </div>
     );
 }
 
