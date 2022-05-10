@@ -4,4 +4,5 @@ export interface IUser {
   name: string,
   equipment: string,
   password: string,
+  viewedFols: string[],
 }
