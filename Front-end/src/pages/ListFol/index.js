@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Picker } from 'react-native';
 import  { useNavigation } from '@react-navigation/native';
-import { useTheme } from 'react-native-paper';
+import { useTheme, Searchbar } from 'react-native-paper';
 import CardFol from '../../Components/FOL';
 import Axios from 'axios';
 import Header from '../../Components/appBar';
@@ -15,13 +15,27 @@ export default function ListFol({route}) {
   picker:{
     marginLeft: "2%",
     marginRight: "2%",
-    marginTop: "1%",
-    height: "25px",
+    height: "35px",
     borderColor: colors.accent,
+    backgroundColor: colors.details,
     borderWidth: "1px", 
-    borderRadius: "5px",
+    borderRadius: "10px",
     width: "150px"
-  }
+  },
+  searchbar:{
+    color: colors.accent,
+    backgroundColor: colors.details,
+    height: "35px",
+    width: "40%",
+    borderColor: colors.accent,
+    borderWidth: "1px",
+    borderRadius: "10px",
+    position: 'relative',
+    top: '35px',
+    left: '58%'
+  },
+
+
 });
 const jwt = require("jsonwebtoken");
 const token = route.params.token;
@@ -45,9 +59,16 @@ function listFolBySelectedEquipment(selectedValue){
    
 }
 
+function searchFolByKeyWord(searchQuery){
+  Axios.get(`http://localhost:5000/api/fols/?search=${searchQuery}`, {headers: {
+  "Authorization": `Bearer ${token}`}}).then((response)=>
+  {setValue(response.data)});
+}
+
 return (
   <View>
-    <Header backAction={true} username={decoded.username}/>
+    <Header backAction={true} username={decoded.username} token={token}/>
+    <Searchbar style = {styles.searchbar} placeholder="Search..." onChangeText={(text)=> searchFolByKeyWord(text)}/>
    <Picker
        style = {styles.picker}
        onValueChange={(itemValue) => (listFolBySelectedEquipment(itemValue))}
