@@ -4,6 +4,7 @@ import { createStackNavigator} from '@react-navigation/stack';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import Home from './pages/Home';
+import viewFol from './pages/viewFol';
 import Login from './pages/Login';
 import ListFol from './pages/ListFol';
 import Header from './Components/appBar';
@@ -14,10 +15,15 @@ function Routes(){
     return(
     <PaperProvider theme={theme}>
         <NavigationContainer >
-            <Stack.Navigator initialRouteName="Login" screenOptions={{header:(props) => <Header {...props}/>} }>
+            <Stack.Navigator initialRouteName="viewFol" screenOptions={{header:(props) => <Header {...props}/>} }>
                 <Stack.Screen
                 name="Home"
                 component={Home}
+                options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                name="viewFol"
+                component={viewFol}
                 options={{ headerShown: false }}
                 />
                 <Stack.Screen 
