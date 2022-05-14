@@ -11,6 +11,7 @@ export default function ListFol({route}) {
  const navigation = useNavigation();
  const {colors} = useTheme();
  const [value, setValue] = useState();
+ const jwt = require("jsonwebtoken");
  const styles = StyleSheet.create({
   picker:{
     marginLeft: "2%",
@@ -23,7 +24,6 @@ export default function ListFol({route}) {
     width: "150px"
   }
 });
-const jwt = require("jsonwebtoken");
 const token = route.params.token;
 const selectedEquipmentParam = route.params.selectedEquipmentParam;
 const decoded = jwt.decode(token);
@@ -33,10 +33,24 @@ const listEquipment = stringDecodedEquipament.split(", ");
 const selectedEquipment = selectedEquipmentParam.trim(); 
 
 React.useEffect(() => {
-  Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedEquipment}`, {headers: {
-    "Authorization": `Bearer ${token}`}}).then((response)=>
-  {setValue(response.data)});
-},[]);
+  const fetchData = async () => {
+    const req1 = await Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedEquipment}`, { headers: { "Authorization": `Bearer ${token}` } })
+
+    const req2 = await Axios.get('http://localhost:5000/api/user/viewedFols', { headers: { "Authorization": `Bearer ${token}` } })
+    const value = []
+    for (let i = 0; i < req1.data.length; i++) {
+
+      if (req2.data.userFols.includes(req1.data[i]._id)) {
+        value.push({ title: req1.data[i].title, ifViewed: true, equipment: req1.data[i].equipment, issue_description: req1.data[i].issue_description })
+      } else {
+        value.push({ title: req1.data[i].title, ifViewed: false, equipment: req1.data[i].equipment, issue_description: req1.data[i].issue_description })
+      }
+    }
+    return value;
+  }
+
+  fetchData().then((response) => { setValue(response) });
+}, []);
 
 function listFolBySelectedEquipment(selectedValue){
   Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedValue}`, {headers: {
@@ -44,6 +58,10 @@ function listFolBySelectedEquipment(selectedValue){
     {setValue(response.data)});
    
 }
+
+React.useEffect(() => {
+
+},[]);
 
 return (
   <View>
