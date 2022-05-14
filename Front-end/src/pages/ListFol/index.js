@@ -12,6 +12,7 @@ export default function ListFol({route}) {
  const {colors} = useTheme();
  const [value, setValue] = useState();
  const jwt = require("jsonwebtoken");
+ const [categoriesList, setCategoriesList] = useState();
  const styles = StyleSheet.create({
   picker:{
     marginLeft: "2%",
@@ -27,6 +28,8 @@ export default function ListFol({route}) {
 const token = route.params.token;
 const selectedEquipmentParam = route.params.selectedEquipmentParam;
 const decoded = jwt.decode(token);
+const decodedCategory = decoded.category;
+console.log(decodedCategory);
 const decodedEquipament = decoded.equipment;
 const stringDecodedEquipament = decodedEquipament.toString();
 const listEquipment = stringDecodedEquipament.split(", "); 
@@ -52,8 +55,8 @@ React.useEffect(() => {
   fetchData().then((response) => { setValue(response) });
 }, []);
 
-function listFolBySelectedEquipment(selectedValue){
-  Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedValue}`, {headers: {
+function listFolBySelectedCategory(selectedValue){
+  Axios.get(`http://localhost:5000/api/fols/?equipment=${selectedEquipment}&search=${selectedValue}`, {headers: {
       "Authorization": `Bearer ${token}`}}).then((response)=>
     {setValue(response.data)});
    
@@ -68,11 +71,11 @@ return (
     <Header backAction={true} username={decoded.username}/>
    <Picker
        style = {styles.picker}
-       onValueChange={(itemValue) => (listFolBySelectedEquipment(itemValue))}
+       onValueChange={(itemValue) => (listFolBySelectedCategory(itemValue))}
      >
          <Picker.Item label="Select" value="null" />
        {      
-        listEquipment.map((eq) => <Picker.Item label={eq} value={eq} />)
+        categoriesList?.map((eq) => <Picker.Item label={eq} value={eq} />)
       }
      </Picker>
         {
