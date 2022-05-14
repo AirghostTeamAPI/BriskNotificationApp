@@ -1,27 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Axios from 'axios';
 import { StyleSheet, Dimensions, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 
 export default function viewFol({ route }) {
-  return (
-    <View style={{flex:1}}>
-                <Pdf
-                    source={{uri: 'http://samples.leanpub.com/thereactnativebook-sample.pdf'}}
-                    onLoadComplete={(numberOfPages,filePath) => {
-                        console.log(`Number of pages: ${numberOfPages}`);
-                    }}
-                    onPageChanged={(page,numberOfPages) => {
-                        console.log(`Current page: ${page}`);
-                    }}
-                    onError={(error) => {
-                        console.log(error);
-                    }}
-                    onPressLink={(uri) => {
-                        console.log(`Link pressed: ${uri}`);
-                    }}
-                    style={styles.pdf}/>
-            </View>
-  )
+    console.log(route.params.title);
+    const [value, setValue] = useState();
+
+    React.useEffect(() => {
+        Axios.get(`https://api5-fatec.herokuapp.com/api/fol/${route.params.title}`).then((response) => { setValue(response.data) });
+    }, []);
+
+    return (
+        <View style={{ flex: 1 }}>
+            <Pdf
+                source={{ uri: 'https://henriquehelloworld.blob.core.windows.net/fatecpublic/FOL-MUS-FATEC.pdf' }}
+                onError={(error) => {
+                    console.log(error);
+                }}
+                onPressLink={(uri) => {
+                    console.log(`Link pressed: ${uri}`);
+                }}
+                page={value}
+                style={styles.pdf} />
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -32,8 +35,8 @@ const styles = StyleSheet.create({
         marginTop: 25,
     },
     pdf: {
-        flex:1,
-        width:Dimensions.get('window').width,
-        height:Dimensions.get('window').height,
+        flex: 1,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
     }
 });
