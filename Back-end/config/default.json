@@ -1,0 +1,5 @@
+{
+  "mongoURI": "mongodb+srv://henriqueerzinger:U9uFI3pROg9jtNU3@cluster0.d7gka.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "jwtSecret": "Vas47Mic8gNhfGXRCIbgWugvuke7ywVT9VKZuVfMae7g25xwyJCtynFPTiE4c1Va8VVytNqTH88aa7cSlfCxhXa7Scdae1B0hyN2I97Rr8jPuZIr1zNoOh35PMSWmg8CosBP8cm3xRu9H7agbcKpJbbkhJg95UF41A0JYSa5dpr1d7kRWscluHC3lb5espwtEr3kZhm31ua3swfBfmfO4hsZAN8rbrqcKTenqoHsJL6PFQpSf1GgSwgJGik2kjQw",
+  "jwtExpiration": 360000
+}

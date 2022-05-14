@@ -7,6 +7,8 @@ const router: Router = Router();
 
 router.post("/user/auth", async (req: Request, res: Response) => {
   try {
+    console.log('a');
+
     const jwtToken = await authenticateUser(req.body.login, req.body.password)
 
     if (req.body.pushToken) {
