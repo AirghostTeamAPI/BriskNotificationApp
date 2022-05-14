@@ -2,9 +2,6 @@ import { Appbar, Searchbar, Menu, Divider, useTheme  } from 'react-native-paper'
 import  React, { useState } from 'react';
 import { StyleSheet} from 'react-native';
 import  { useNavigation } from '@react-navigation/native';
-import Autocomplete from 'react-native-autocomplete-input';
-import Axios from  'axios';
-import CardFol from '../FOL';
 
 function Header(props){
     const {colors} = useTheme();
