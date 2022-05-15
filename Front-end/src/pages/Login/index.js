@@ -53,7 +53,7 @@ function Login (){
       Button: {
         backgroundColor: "#ffffff",
         width: "70%",
-        borderRadius: "30px",
+        borderRadius: 30,
         alignSelf: "center",
         color: "#5A55F2",
       },
