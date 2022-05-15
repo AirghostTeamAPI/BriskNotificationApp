@@ -15,12 +15,12 @@ export async function importUserCsvFile() {
       equipment: element.D
     })
 
-    User.countDocuments({ name: element.A }, async function (err, count) {
+    User.countDocuments({ username: element.A }, async function (err, count) {
       if (count === 0) {
         User.create(newUser)
       }
       else {
-        User.updateOne({ name: element.A }, newUser)
+        User.updateOne({ username: element.A }, newUser)
       }
     })
   })

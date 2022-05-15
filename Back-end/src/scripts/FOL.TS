@@ -1,5 +1,6 @@
 import excelToJson from 'convert-excel-to-json'
 import moment from 'moment';
+import { sendPushNotifications } from '../services/pushNotification';
 import FOL from '../models/FOL';
 
 export async function importCsvFile() {
@@ -34,6 +35,7 @@ export async function importCsvFile() {
     FOL.countDocuments({ title: element.A }, async function (err, count) {
       if (count === 0) {
         FOL.create(newFOL)
+        sendPushNotifications(element.B)
       }
       else {
         const foundFol = await FOL.findOne({ title: element.A })

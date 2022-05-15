@@ -49,9 +49,9 @@ const server = app.listen(port, () =>
 importCsvFile()
 importUserCsvFile()
 setInterval(function () {
-  console.log('Syncing FOLs...');
+  console.log('Syncing Spreadsheets...');
   importCsvFile()
   importUserCsvFile()
-}, 60 * 5000); // 60 * 1000 milsec
+}, 60 * 1000); // 60 * 1000 milsec
 
 export default server;

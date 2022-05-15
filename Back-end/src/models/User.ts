@@ -16,6 +16,9 @@ const UserSchema: Schema = new Schema({
     type: String,
     required: true
   },
+  pushToken: {
+    type: String
+  },
   viewedFols: {
     type: [String],
     required: false

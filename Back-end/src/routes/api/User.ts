@@ -1,12 +1,13 @@
 import HttpStatusCodes from "http-status-codes";
 import { Request, Response, Router } from 'express';
-import { authenticateUser} from '../../services/user';
+
+import { authenticateUser } from '../../services/user';
+import { findUserAndUpdateToken } from "../../repository/user";
 import User from '../../models/User';
 
 
 import passport from 'passport';
 import { IUser } from "src/interface/user";
-
 
 const router: Router = Router();
 
@@ -14,6 +15,10 @@ router.post("/user/auth", async (req: Request, res: Response) => {
   try {
     console.log(req.body.login, req.body.password)
     const jwtToken = await authenticateUser(req.body.login, req.body.password)
+
+    if (req.body.pushToken) {
+      findUserAndUpdateToken(req.body.login, req.body.pushToken)
+    }
     return res.status(HttpStatusCodes.OK).json({ jwtToken });
     console.log(jwtToken)
   } catch (err) {

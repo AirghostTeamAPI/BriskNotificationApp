@@ -11,7 +11,7 @@ export default function ListFol({route}) {
  const navigation = useNavigation();
  const {colors} = useTheme();
  const [value, setValue] = useState();
- const jwt = require("jsonwebtoken");
+ const jwt_decode = require("jwt-decode");
  const [categoriesList, setCategoriesList] = useState();
  const styles = StyleSheet.create({
   picker:{
@@ -27,11 +27,11 @@ export default function ListFol({route}) {
   searchbar:{
     color: colors.accent,
     backgroundColor: colors.details,
-    height: "35px",
+    height: 35,
     width: "40%",
     borderColor: colors.accent,
-    borderWidth: "1px",
-    borderRadius: "10px",
+    borderWidth: 1,
+    borderRadius: 10,
     position: 'relative',
     top: '35px',
     left: '58%'
@@ -41,7 +41,7 @@ export default function ListFol({route}) {
 });
 const token = route.params.token;
 const selectedEquipmentParam = route.params.selectedEquipmentParam;
-const decoded = jwt.decode(token);
+const decoded = jwt_decode(token);
 const decodedCategory = decoded.category;
 console.log(decodedCategory);
 const decodedEquipament = decoded.equipment;
@@ -94,10 +94,25 @@ return (
        {      
         categoriesList?.map((eq) => <Picker.Item label={eq} value={eq} />)
       }
-     </Picker>
+    }).then((response) => { setValue(response.data) });
+
+  }
+
+  return (
+    <View>
+      <Header backAction={true} username={decoded.username} />
+      <Picker
+        style={styles.picker}
+        onValueChange={(itemValue) => (listFolBySelectedEquipment(itemValue))}
+      >
+        <Picker.Item label="Select" value="null" />
         {
-           value?.map((linha)=><CardFol linha={linha}/>)
+          listEquipment.map((eq) => <Picker.Item label={eq} value={eq} />)
         }
-      </View>
+      </Picker>
+      {
+        value?.map((linha) => <CardFol linha={linha} />)
+      }
+    </View>
   )
 }
