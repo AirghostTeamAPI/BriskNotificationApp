@@ -23,7 +23,7 @@ export default function CardFol(props) {
       marginLeft: "2%",
       marginRight: "2%",
       marginTop: "1%",
-      borderLeftWidth: "5px",
+      borderLeftWidth: 5,
       borderLeftColor: colors.accent,
       backgroundColor: colors.background,          
     },

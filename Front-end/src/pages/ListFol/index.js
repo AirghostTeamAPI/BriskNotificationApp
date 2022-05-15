@@ -11,42 +11,40 @@ export default function ListFol({route}) {
  const navigation = useNavigation();
  const {colors} = useTheme();
  const [value, setValue] = useState();
- const jwt_decode = require("jwt-decode");
+ const jwt = require("jsonwebtoken");
  const [categoriesList, setCategoriesList] = useState();
  const styles = StyleSheet.create({
   picker:{
     marginLeft: "2%",
     marginRight: "2%",
-    height: "35px",
+    height: 35,
     borderColor: colors.accent,
     backgroundColor: colors.details,
-    borderWidth: "1px", 
-    borderRadius: "10px",
-    width: "150px"
+    borderWidth: 1, 
+    borderRadius: 10,
+    width: 150
   },
   searchbar:{
     color: colors.accent,
     backgroundColor: colors.details,
     height: 35,
-    width: "40%",
+    width: '40%',
     borderColor: colors.accent,
     borderWidth: 1,
     borderRadius: 10,
     position: 'relative',
-    top: '35px',
+    top: 35,
     left: '58%'
-  },
+  }
+ });
 
-
-});
 const token = route.params.token;
 const selectedEquipmentParam = route.params.selectedEquipmentParam;
-const decoded = jwt_decode(token);
+const decoded = jwt.decode(token);
 const decodedCategory = decoded.category;
 console.log(decodedCategory);
 const decodedEquipament = decoded.equipment;
 const stringDecodedEquipament = decodedEquipament.toString();
-const listEquipment = stringDecodedEquipament.split(", "); 
 const selectedEquipment = selectedEquipmentParam.trim(); 
 
 React.useEffect(() => {
@@ -94,25 +92,10 @@ return (
        {      
         categoriesList?.map((eq) => <Picker.Item label={eq} value={eq} />)
       }
-    }).then((response) => { setValue(response.data) });
-
-  }
-
-  return (
-    <View>
-      <Header backAction={true} username={decoded.username} />
-      <Picker
-        style={styles.picker}
-        onValueChange={(itemValue) => (listFolBySelectedEquipment(itemValue))}
-      >
-        <Picker.Item label="Select" value="null" />
+     </Picker>
         {
-          listEquipment.map((eq) => <Picker.Item label={eq} value={eq} />)
+           value?.map((linha)=><CardFol linha={linha}/>)
         }
-      </Picker>
-      {
-        value?.map((linha) => <CardFol linha={linha} />)
-      }
-    </View>
+      </View>
   )
 }

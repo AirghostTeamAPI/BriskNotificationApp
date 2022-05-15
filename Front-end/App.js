@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useFonts, Anton_400Regular } from '@expo-google-fonts/anton';
 import { Provider as PaperProvider } from 'react-native-paper';
 import * as Notifications from 'expo-notifications';
-
 import Routes from './src/router';
 
 Notifications.setNotificationHandler({
@@ -36,8 +35,6 @@ export default function App() {
       Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
-
-
 
   let [fontsLoaded] = useFonts({
     Anton_400Regular,

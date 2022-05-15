@@ -6,14 +6,12 @@ import Header from '../../Components/appBar';
 export default function Home({ route }) {
   const { token } = route.params;
   const jwt = require("jwt-decode");
-  const jwt_decode = jwt_decode("jwt-decode");
   const decoded = jwt.decode(token, { json: true });
   const decodedEquipment = decoded.equipment;
   const stringDecodedEquipment = decodedEquipment.toString();
   const listEquipment = stringDecodedEquipment.split(",");
 
   return (
-
     <View>
       <Header username={decoded.username} backAction={false} />
       {
