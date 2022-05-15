@@ -1,20 +1,9 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Appbar, Searchbar, Menu, Divider, useTheme } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Axios from 'axios';
 
-
-=======
-
-import Axios from 'axios';
-import { Appbar, Searchbar, Menu, Divider, useTheme  } from 'react-native-paper';
-import  React, { useState } from 'react';
-import { StyleSheet} from 'react-native';
-import  { useNavigation } from '@react-navigation/native';
-
->>>>>>> b2b32b001b23676742aa0f390b77165fbcc57f1f
 function Header(props) {
   const { colors } = useTheme();
   const [value, setValue] = useState();
@@ -26,11 +15,7 @@ function Header(props) {
       height: "70%",
       width: "50%",
       borderColor: colors.accent,
-<<<<<<< HEAD
-      borderWidth: "1px",
-=======
       borderWidth: 1,
->>>>>>> b2b32b001b23676742aa0f390b77165fbcc57f1f
       borderRadius: 10,
     },
     menu: {
@@ -40,25 +25,6 @@ function Header(props) {
       color: colors.accent
     }
   });
-<<<<<<< HEAD
-
-  const navigation = useNavigation();
-
-  const _goBack = () => console.log('go back');
-
-  const _handleMore = () => console.log('Shown more');
-
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const [visible, setVisible] = React.useState(false);
-
-  const openMenu = () => setVisible(true);
-
-  const closeMenu = () => setVisible(false);
-
-  const onChangeSearch = query => setSearchQuery(query);
-=======
->>>>>>> b2b32b001b23676742aa0f390b77165fbcc57f1f
 
   const navigation = useNavigation();
 
@@ -86,13 +52,6 @@ function Header(props) {
       <Appbar.Header>
         <Appbar.BackAction color={colors.accent} onPress={() => { navigation.goBack(null); }} />
         <Appbar.Content title="" />
-<<<<<<< HEAD
-
-        <Searchbar style={styles.searchbar} value={searchQuery} placeholder="Search keyword" onChangeText={onChangeSearch} onIconPress={searchFolByKeyWord} />
-=======
-}
->>>>>>> b2b32b001b23676742aa0f390b77165fbcc57f1f
-
         <Appbar.Action color={colors.accent} icon="bell" onPress={_handleMore} />
         <Menu style={styles.menu}
           visible={visible}
