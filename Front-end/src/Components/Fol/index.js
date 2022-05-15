@@ -1,7 +1,14 @@
+
+import { useNavigation } from '@react-navigation/native';
+import Axios from 'axios';
 import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
+import { useTheme, Card } from 'react-native-paper';
+
 import { StyleSheet } from 'react-native';
 import { useTheme ,Avatar, Button, Card, Title, Paragraph, Colors } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Entypo';
+
 
 export default function CardFol(props) {
   console.log(props.linha.ifViewed)

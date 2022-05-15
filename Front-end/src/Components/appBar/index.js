@@ -1,9 +1,8 @@
-
+import React, { useState } from 'react';
+import { Appbar, Searchbar, Menu, Divider, useTheme } from 'react-native-paper';
+import { StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Axios from 'axios';
-import { Appbar, Searchbar, Menu, Divider, useTheme  } from 'react-native-paper';
-import  React, { useState } from 'react';
-import { StyleSheet} from 'react-native';
-import  { useNavigation } from '@react-navigation/native';
 
 function Header(props) {
   const { colors } = useTheme();
@@ -39,15 +38,22 @@ function Header(props) {
 
   const openMenu = () => setVisible(true);
 
-    if(props.backAction){
+  function searchFolByKeyWord() {
+    Axios.get(`http://localhost:5000/api/fols/?search=${searchQuery}`, {
+      headers: {
+        "Authorization": `Bearer ${props.token}`
+      }
+    }).then((response) => { setValue(response.data) });
+  }
+
+
+  if (props.backAction) {
     return (
       <Appbar.Header>
         <Appbar.BackAction color={colors.accent} onPress={() => { navigation.goBack(null); }} />
         <Appbar.Content title="" />
-}
-
-        <Appbar.Action color = {colors.accent} icon="bell" onPress={_handleMore} />
-        <Menu style = {styles.menu}
+        <Appbar.Action color={colors.accent} icon="bell" onPress={_handleMore} />
+        <Menu style={styles.menu}
           visible={visible}
           onDismiss={closeMenu}
           anchor={<Appbar.Action color={colors.accent} icon="dots-vertical" onPress={openMenu} />}>
@@ -77,5 +83,6 @@ function Header(props) {
     )
   }
 };
+
 
 export default Header;
