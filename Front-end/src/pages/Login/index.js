@@ -76,7 +76,7 @@ function Login() {
   const styles = StyleSheet.create({
     TextInput: {
       backgroundColor: colors.accentOpacity,
-      opacity: 80,
+      opacity: "80%",
       marginBottom: 15,
       width: "70%",
       alignSelf: "center",
