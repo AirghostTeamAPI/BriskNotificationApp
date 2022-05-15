@@ -95,7 +95,6 @@ return (
         categoriesList?.map((eq) => <Picker.Item label={eq} value={eq} />)
       }
     }).then((response) => { setValue(response.data) });
->>>>>>> b2b32b001b23676742aa0f390b77165fbcc57f1f
 
   }
 
