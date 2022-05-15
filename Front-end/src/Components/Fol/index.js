@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 import { useTheme ,Avatar, Button, Card, Title, Paragraph, Colors } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Entypo';
 
-
 export default function CardFol(props) {
   console.log(props.linha.ifViewed)
   const ifViewed = props.linha.ifViewed
