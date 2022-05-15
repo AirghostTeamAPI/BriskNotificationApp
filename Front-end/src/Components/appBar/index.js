@@ -38,15 +38,6 @@ function Header(props) {
 
   const openMenu = () => setVisible(true);
 
-  function searchFolByKeyWord() {
-    Axios.get(`http://localhost:5000/api/fols/?search=${searchQuery}`, {
-      headers: {
-        "Authorization": `Bearer ${props.token}`
-      }
-    }).then((response) => { setValue(response.data) });
-  }
-
-
   if (props.backAction) {
     return (
       <Appbar.Header>

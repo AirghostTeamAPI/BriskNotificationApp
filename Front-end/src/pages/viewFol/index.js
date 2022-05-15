@@ -4,7 +4,6 @@ import { StyleSheet, Dimensions, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 
 export default function viewFol({ route }) {
-    console.log(route.params.title);
     const [value, setValue] = useState();
 
     React.useEffect(() => {
@@ -17,9 +16,6 @@ export default function viewFol({ route }) {
                 source={{ uri: 'https://henriquehelloworld.blob.core.windows.net/fatecpublic/FOL-MUS-FATEC.pdf' }}
                 onError={(error) => {
                     console.log(error);
-                }}
-                onPressLink={(uri) => {
-                    console.log(`Link pressed: ${uri}`);
                 }}
                 page={value}
                 style={styles.pdf} />

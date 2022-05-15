@@ -3,7 +3,6 @@ import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { Button, Title, Subheading, TextInput } from 'react-native-paper';
 import { StyleSheet, View, TextInput as Text } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
@@ -49,24 +48,17 @@ function Login() {
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(pushToken => setExpoPushToken(pushToken));
-    console.log(`HERE!!! ${expoPushToken}`)
   }, []);
 
   const signIn = () => {
-    axios.post('http://localhost:5000/api/user/auth', {
+    axios.post('https://api5-fatec.herokuapp.com/api/user/auth', {
       login: username,
       password: password,
       pushToken: expoPushToken
     }).then(async (response) => {
       const { jwtToken } = response.data;
-      await AsyncStorage.multiSet([
-        ['@CodeApi:token', jwtToken],
-      ]);
-    }).then(() => (AsyncStorage.getItem('@CodeApi:token'))
-      .then(
-        (token) => token == 'undefined' ? setMenssage('Username or password is invalid') : navigation.navigate('Home', { token: token }
-        )
-      )
+      jwtToken == 'undefined' ? setMenssage('Username or password is invalid') : navigation.navigate('Home', { token: jwtToken })
+    }
     ).catch((error) => { console.log(error) })
   };
 
@@ -76,7 +68,7 @@ function Login() {
   const styles = StyleSheet.create({
     TextInput: {
       backgroundColor: colors.accentOpacity,
-      opacity: "80%",
+      opacity: 80,
       marginBottom: 15,
       width: "70%",
       alignSelf: "center",
