@@ -84,8 +84,5 @@ function Header(props) {
   }
 };
 
-<<<<<<< HEAD
+
 export default Header;
-=======
-export default Header;
->>>>>>> b2b32b001b23676742aa0f390b77165fbcc57f1f
