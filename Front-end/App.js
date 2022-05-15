@@ -7,6 +7,14 @@ import * as Notifications from 'expo-notifications';
 
 import Routes from './src/router';
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 export default function App() {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
