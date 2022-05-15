@@ -15,6 +15,10 @@ const UserSchema: Schema = new Schema({
   equipment: {
     type: String,
     required: true
+  },
+  viewedFols: {
+    type: [String],
+    required: false
   }
 });
 
