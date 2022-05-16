@@ -109,7 +109,7 @@ https://user-images.githubusercontent.com/62018632/163511036-9d59f5da-16ba-4b91-
 
 ## What have we done?
     
-In this second Sprint, we added FOL preview in PDF. We added notification functionality if a new FOL is released. Marking on FOLs not yet read.
+In this second Sprint, we added FOL preview in PDF. We added notification functionality if a new FOL is released. Search FOLs in list.
 
 | Minimum Viable Product  | Description |
 | ----------- | ---- |
@@ -120,9 +120,11 @@ In this second Sprint, we added FOL preview in PDF. We added notification functi
     
 ![Prototype's Screen.2](https://media.discordapp.net/attachments/829118904005558292/975568413747454002/unknown.png?width=538&height=473)    
     
-## Demo video
+## Demo video - FOL preview in PDF
 
-    ### Notification 
+https://user-images.githubusercontent.com/62018632/168510546-dcfc487f-2bba-4455-9af4-e6f918a7c0c9.mp4
+    
+### Demo video - Notification 
     
 https://user-images.githubusercontent.com/62018632/168509971-61aa4521-3d4e-488c-b529-6d82e4c547af.mp4
 
