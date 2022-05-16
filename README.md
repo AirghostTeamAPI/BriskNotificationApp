@@ -5,13 +5,13 @@ An app that facilitates standard procedures for drivers in the event of a proble
 
 | User stories | Description|
 | ----|---- |
-|US001|Login|
-|US002|User registration|
-|US003|FOL's consultation|
-|US004|FOL’s notification|
-|US005|FOL’s reading|
-|US006|FOL’s Download|
-|US007|Registro de chamados|
+|US001|As User I can log in to the application with the user previously registered and access the list of vehicles I own|
+|US002|As User I can view all FOLs related to vehicles I own through a list|
+|US003|As Administrator I can to register users directly in the Database|
+|US004|As User of I can consult the FOL's of my vehicles|
+|US005|As administrator I want to notify users when a new FOL is released|
+|US006|As User I can view the FOL description on Vehicle PDF|
+|US007|As Administrator I can get statistical analysis about my system|
 
 # Sumary
 
@@ -20,8 +20,8 @@ An app that facilitates standard procedures for drivers in the event of a proble
 | 1 | <a href="#Team">Team</a>|
 | 2 | <a href="#Technologies">Technologies</a>| 
 | 3 | <a href="#Instalation-and-Execute">Instalation and Execute| 
-| 4 | <a href="#Sprint 1 - 2022/04/14">Sprint 1</a>|
-| 5 | <a href="#Sprint 2 - 2022/05/15">Sprint 2</a>|
+| 4 | <a href="#Sprint-1---2022/04/14">Sprint 1</a>|
+| 5 | <a href="#Sprint2---2022/05/15">Sprint 2</a>|
     
 # Team
 
@@ -114,9 +114,9 @@ In this second Sprint, we added FOL preview in PDF. We added notification functi
 | Minimum Viable Product  | Description |
 | ----------- | ---- |
 | **FOL preview in PDF** :heavy_check_mark:| the user can choice the FOL in the list and read its description|
-| **Notification when a new FOL is released** :heavy_check_mark:| the user's phone receive a notification if a new FOL associeted by any of their vehicles is relased|
+| **Notification when a new FOL is released** :heavy_check_mark:| the user's phone receive a notification if a new FOL associated by any of their vehicles is relased|
 
-##Prototype
+## Prototype
     
 ![Prototype's Screen.2](https://media.discordapp.net/attachments/829118904005558292/975568413747454002/unknown.png?width=538&height=473)    
     
