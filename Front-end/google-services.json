@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "966566006573",
+    "project_id": "fatec-05",
+    "storage_bucket": "fatec-05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966566006573:android:1f8777579889321bb18da4",
+        "android_client_info": {
+          "package_name": "com.fatec.brisk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966566006573-pmff9h5esafbktdaqdqp24geobkle2iu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "49b202208142ac297b2b42757de7023927b24cc2"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966566006573-pmff9h5esafbktdaqdqp24geobkle2iu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

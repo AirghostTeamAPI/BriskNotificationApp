@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Appbar, Searchbar, Menu, Divider, useTheme } from 'react-native-paper';
+import { Appbar, Menu, Divider, useTheme } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Axios from 'axios';
 
 function Header(props) {
   const { colors } = useTheme();
@@ -46,7 +45,6 @@ function Header(props) {
         <Appbar.Action color={colors.accent} icon="bell" onPress={_handleMore} />
         <Menu style={styles.menu}
           visible={visible}
-          onDismiss={closeMenu}
           anchor={<Appbar.Action color={colors.accent} icon="dots-vertical" onPress={openMenu} />}>
           <Menu.Item title={props.username} />
           <Divider />
@@ -63,7 +61,6 @@ function Header(props) {
         <Appbar.Action color={colors.accent} icon="bell" onPress={_handleMore} />
         <Menu style={styles.menu}
           visible={visible}
-          onDismiss={closeMenu}
           anchor={<Appbar.Action color={colors.accent} icon="dots-vertical" onPress={openMenu} />}>
           <Menu.Item title={props.username} />
           <Divider />

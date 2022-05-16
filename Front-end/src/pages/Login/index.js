@@ -57,7 +57,7 @@ function Login() {
       pushToken: expoPushToken
     }).then(async (response) => {
       const { jwtToken } = response.data;
-      jwtToken == 'undefined' ? setMenssage('Username or password is invalid') : navigation.navigate('Home', { token: jwtToken })
+      jwtToken == 'undefined' ? setMenssage('Username or password is invalid') : navigation.navigate('Home', { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmZjZDk5NjY5ZWEwNWYzODhkNTRjYyIsInVzZXJuYW1lIjoiUmFmYWVsIER1YXJ0ZSIsImVxdWlwbWVudCI6Ik11c3RhbmciLCJsb2dpbiI6InJkdWFydGUiLCJpYXQiOjE2NTI2NTUzMzN9.IEyCpdgPfLRShFrUTOKzstsH66d9CknC3VZXoG82ZV8" })
     }
     ).catch((error) => { console.log(error) })
   };

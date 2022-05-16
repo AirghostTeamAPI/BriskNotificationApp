@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Picker } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme, Searchbar } from 'react-native-paper';
 import CardFol from '../../Components/Fol';
@@ -33,9 +34,8 @@ export default function ListFol({ route }) {
       borderColor: colors.accent,
       borderWidth: 1,
       borderRadius: 10,
-      position: 'relative',
-      top: 35,
-      left: '58%'
+      top: 40,
+      left: 200
     }
   });
 
@@ -89,11 +89,11 @@ export default function ListFol({ route }) {
       >
         <Picker.Item label="Select" value="null" />
         {
-          categoriesList?.map((eq) => <Picker.Item label={eq} value={eq} />)
+          categoriesList?.map((eq) => <Picker.Item key={eq} label={eq} value={eq} />)
         }
       </Picker>
       {
-        value?.map((linha) => <CardFol linha={linha} />)
+        value?.map((linha) => <CardFol key={linha.title} linha={linha} />)
       }
     </View>
   )

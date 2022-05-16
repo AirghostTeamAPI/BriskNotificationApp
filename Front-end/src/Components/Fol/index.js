@@ -2,9 +2,11 @@ import React from 'react';
 import { useTheme, Card } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function CardFol(props) {
+  const navigation = useNavigation();
   const ifViewed = props.linha.ifViewed
   const title = props.linha.title;
   const equipment = props.linha.equipment
@@ -34,7 +36,7 @@ export default function CardFol(props) {
 
   if (ifViewed != true) {
     return (
-      <Card style={styles.card}>
+      <Card onPress={() => navigation.navigate("viewFol", { title })} style={styles.card}>
         <Card.Title title={description} subtitle={`• ${title} • ${equipment}`}
           subtitleStyle={{ color: colors.secondary, fontWeight: "bold" }}
         />
@@ -44,7 +46,7 @@ export default function CardFol(props) {
   }
   else {
     return (
-      <Card style={styles.card}>
+      <Card key={title} onPress={() => navigation.navigate("viewFol", { title })} style={styles.card}>
         <Card.Title title={description} subtitle={`• ${title} • ${equipment}`}
           subtitleStyle={{ color: colors.secondary, fontWeight: "bold" }}
         />

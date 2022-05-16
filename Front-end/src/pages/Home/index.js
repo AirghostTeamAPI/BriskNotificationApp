@@ -13,9 +13,9 @@ export default function Home({ route }) {
 
   return (
     <View>
-      <Header username={decoded.username} backAction={false} />
+      <Header key={decoded.equipment} username={decoded.username} backAction={false} />
       {
-        listEquipment.map((value) => <CardVehicle equipment={value} token={token} />)
+        listEquipment.map((value) => <CardVehicle key={value} equipment={value} token={token} />)
       }
     </View>
   )
