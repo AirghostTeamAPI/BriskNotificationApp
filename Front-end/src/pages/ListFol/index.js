@@ -78,6 +78,10 @@ export default function ListFol({ route }) {
       }
     }).then((response) => { setValue(response.data) });
   }
+  
+  Axios.get(`http://localhost:5000/api/fols/categories/?equipment=${selectedEquipment}`, {headers: {
+    "Authorization": `Bearer ${token}`}}).then((response)=>
+  {setCategoriesList(response.data)});
 
   return (
     <View>
