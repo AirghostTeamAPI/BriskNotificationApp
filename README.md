@@ -120,7 +120,7 @@ In this second Sprint, we added FOL preview in PDF. We added notification functi
     
 ![Prototype's Screen.2](https://media.discordapp.net/attachments/829118904005558292/975568413747454002/unknown.png?width=538&height=473)    
     
-## Demo video - FOL preview in PDF
+### Demo video - FOL preview in PDF
 
 https://user-images.githubusercontent.com/62018632/168510546-dcfc487f-2bba-4455-9af4-e6f918a7c0c9.mp4
     
