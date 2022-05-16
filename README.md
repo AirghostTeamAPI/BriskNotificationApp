@@ -20,8 +20,8 @@ An app that facilitates standard procedures for drivers in the event of a proble
 | 1 | <a href="#Team">Team</a>|
 | 2 | <a href="#Technologies">Technologies</a>| 
 | 3 | <a href="#Instalation-and-Execute">Instalation and Execute| 
-| 4 | <a href="#Sprint-1---2022/04/14">Sprint 1</a>|
-| 5 | <a href="#Sprint2---2022/05/15">Sprint 2</a>|
+| 4 | <a href="#sprint-1---20220414">Sprint 1</a>|
+| 5 | <a href="#sprint-2---20220515">Sprint 2</a>|
     
 # Team
 
