@@ -20,8 +20,9 @@ An app that facilitates standard procedures for drivers in the event of a proble
 | 1 | <a href="#Team">Team</a>|
 | 2 | <a href="#Technologies">Technologies</a>| 
 | 3 | <a href="#Instalation-and-Execute">Instalation and Execute| 
-| 4 | <a href="#Sprint-1">Sprint 1</a>|
-
+| 4 | <a href="#Sprint 1 - 2022/04/14">Sprint 1</a>|
+| 5 | <a href="#Sprint 2 - 2022/05/15">Sprint 2</a>|
+    
 # Team
 
 [![Github Badge](https://img.shields.io/badge/MASTER-Letícia_Santos-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/LeticiaSan)
@@ -83,7 +84,7 @@ An app that facilitates standard procedures for drivers in the event of a proble
 
 <br>
 
-# Sprint 1
+# Sprint 1 - 2022/04/14
 
 ## What have we done?
 In this First Sprint, our focus was to list the **vehicles** and the **FOLs** according to the user. We concluded the login, the Home page, with the list of vehicles, and the Page with the list of FOLs. 
@@ -104,4 +105,19 @@ In this First Sprint, our focus was to list the **vehicles** and the **FOLs** ac
 
 https://user-images.githubusercontent.com/62018632/163511036-9d59f5da-16ba-4b91-8cce-a8a7a83cdcaf.mp4
 
+# Sprint 2 - 2022/05/15
 
+## What have we done?
+    
+In this second Sprint, we added FOL preview in PDF. We added notification functionality if a new FOL is released. Marking on FOLs not yet read.
+
+| Minimum Viable Product  | Description |
+| ----------- | ---- |
+| **FOL preview in PDF** :heavy_check_mark:| the user can choice the FOL in the list and read its description|
+| **Notification when a new FOL is released** :heavy_check_mark:| the user's phone receive a notification if a new FOL associeted by any of their vehicles is relased|
+
+##Prototype
+    
+![Prototype's Screen.2](https://media.discordapp.net/attachments/829118904005558292/975568413747454002/unknown.png?width=538&height=473)    
+    
+## Demo video
