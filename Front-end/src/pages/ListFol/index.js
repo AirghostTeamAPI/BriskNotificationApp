@@ -72,7 +72,7 @@ export default function ListFol({ route }) {
   }
 
   function searchFolByKeyWord(searchQuery) {
-    Axios.get(`https://api5-fatec.herokuapp.com/api/fols/?search=${searchQuery}`, {
+    Axios.get(`https://api5-fatec.herokuapp.com/api/fols/?equipment=${selectedEquipment}&search=${searchQuery}`, {
       headers: {
         "Authorization": `Bearer ${token}`
       }
