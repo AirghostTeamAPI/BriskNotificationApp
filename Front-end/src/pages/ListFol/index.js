@@ -51,9 +51,9 @@ export default function ListFol({ route }) {
       for (let i = 0; i < req1.data.length; i++) {
 
         if (req2.data.userFols.includes(req1.data[i]._id)) {
-          value.push({ title: req1.data[i].title, ifViewed: true, equipment: req1.data[i].equipment, issue_description: req1.data[i].issue_description })
+          value.push({ title: req1.data[i].title, ifViewed: true, equipment: req1.data[i].equipment, issue_description: req1.data[i].issue_description, id: req1.data[i].id })
         } else {
-          value.push({ title: req1.data[i].title, ifViewed: false, equipment: req1.data[i].equipment, issue_description: req1.data[i].issue_description })
+          value.push({ title: req1.data[i].title, ifViewed: false, equipment: req1.data[i].equipment, issue_description: req1.data[i].issue_description, id: req1.data[i].id })
         }
       }
       return value;
