@@ -9,6 +9,7 @@ import Header from '../../Components/appBar';
 
 export default function ListFol({ route }) {
   const token = route.params.token;
+  var tokenContext = this.contexy
   const navigation = useNavigation();
   const { colors } = useTheme();
   const [value, setValue] = useState();
@@ -51,9 +52,9 @@ export default function ListFol({ route }) {
       for (let i = 0; i < req1.data.length; i++) {
 
         if (req2.data.userFols.includes(req1.data[i]._id)) {
-          value.push({ title: req1.data[i].title, ifViewed: true, equipment: req1.data[i].equipment, issue_description: req1.data[i].issue_description })
+          value.push({ title: req1.data[i].title, ifViewed: true, equipment: req1.data[i].equipment, issue_description: req1.data[i].issue_description, id: req1.data[i]._id })
         } else {
-          value.push({ title: req1.data[i].title, ifViewed: false, equipment: req1.data[i].equipment, issue_description: req1.data[i].issue_description })
+          value.push({ title: req1.data[i].title, ifViewed: false, equipment: req1.data[i].equipment, issue_description: req1.data[i].issue_description, id: req1.data[i]._id })
         }
       }
       return value;
@@ -79,7 +80,7 @@ export default function ListFol({ route }) {
     }).then((response) => { setValue(response.data) });
   }
   
-  Axios.get(`http://localhost:5000/api/fols/categories/?equipment=${selectedEquipment}`, {headers: {
+  Axios.get(`http://api5-fatec.herokuapp.com/api/fols/categories/?equipment=${selectedEquipment}`, {headers: {
     "Authorization": `Bearer ${token}`}}).then((response)=>
   {setCategoriesList(response.data)});
 
@@ -97,7 +98,7 @@ export default function ListFol({ route }) {
         }
       </Picker>
       {
-        value?.map((linha) => <CardFol key={linha.title} linha={linha} />)
+        value?.map((linha) => <CardFol key={linha.title, linha.id} linha={linha} />)
       }
     </View>
   )
