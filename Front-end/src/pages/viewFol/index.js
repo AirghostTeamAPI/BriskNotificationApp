@@ -3,12 +3,11 @@ import Axios from 'axios';
 import { StyleSheet, Dimensions, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 
-export default function viewFol({ route, identifier }) {
+export default function viewFol({ route }) {
     const [value, setValue] = useState();
-
     React.useEffect(() => {
-        Axios.post(`https://api5-fatec.herokuapp.com/api/fol/${identifier.params.id}`).then((response) => { setValue(response.data)});
-        Axios.get(`https://api5-fatec.herokuapp.com/api/fol/${route.params.title}`).then((response) => { setValue(response.data)});
+        Axios.post(`https://api5-fatec.herokuapp.com/api/fol/${route.params.folData[1]}`);
+        Axios.get(`https://api5-fatec.herokuapp.com/api/fol/${route.params.folData[0]}`).then((response) => { setValue(response.data)});
     }, []);
 
     return (

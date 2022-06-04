@@ -79,7 +79,7 @@ export default function ListFol({ route }) {
     }).then((response) => { setValue(response.data) });
   }
   
-  Axios.get(`http://localhost:5000/api/fols/categories/?equipment=${selectedEquipment}`, {headers: {
+  Axios.get(`http://api5-fatec.herokuapp.com/api/fols/categories/?equipment=${selectedEquipment}`, {headers: {
     "Authorization": `Bearer ${token}`}}).then((response)=>
   {setCategoriesList(response.data)});
 
@@ -97,7 +97,7 @@ export default function ListFol({ route }) {
         }
       </Picker>
       {
-        value?.map((linha) => <CardFol key={linha.title} linha={linha} />)
+        value?.map((linha) => <CardFol key={linha} linha={linha} />)
       }
     </View>
   )
