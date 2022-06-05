@@ -23,7 +23,8 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.fatec.brisk"
+      "package": "com.fatec.brisk",
+      "googleServicesFile": "./google-services.json"
     },
     "plugins": [
       [
