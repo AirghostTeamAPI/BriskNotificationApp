@@ -6,6 +6,8 @@ import { StyleSheet, View, TextInput as Text } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
+import * as Location from 'expo-location';
+import Geocoder from 'react-native-geocoding';
 
 async function registerForPushNotificationsAsync() {
   let pushToken;
@@ -44,20 +46,49 @@ function Login() {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [menssage, setMenssage] = useState('');
+  const [message, setMessage] = useState('');
+  const [country, setCountry] = useState('');
+
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(pushToken => setExpoPushToken(pushToken));
+
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    console.log('passou aqui')
+    if(status!=='granted'){
+     setErrorMsg('Permission to access location was denied');
+   }
+   else{
+     await getLocation();
+   }
+
   }, []);
+
+  async function getLocation()
+{
+  let location = await Location.getCurrentPositionAsync({});
+  Geocoder.init("AIzaSyCQrsTftjZKJ2hLa_q2wlNPWWa7RVtclGA")
+  Geocoder.from(location.coords.latitude, location.coords.longitude)
+  .then(json => {
+      let address = json.results[0].address_components[6].long_name;
+      setCountry(address);
+      console.log(`${country}`);
+  })
+  .catch(error => console.warn(error));
+}
 
   const signIn = () => {
     axios.post('https://api5-fatec.herokuapp.com/api/user/auth', {
       login: username,
       password: password,
-      pushToken: expoPushToken
+      pushToken: expoPushToken,
+      country: country
     }).then(async (response) => {
       const { jwtToken } = response.data;
-      jwtToken == 'undefined' ? setMenssage('Username or password is invalid') : navigation.navigate('Home', { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmZjZDk5NjY5ZWEwNWYzODhkNTRjYyIsInVzZXJuYW1lIjoiUmFmYWVsIER1YXJ0ZSIsImVxdWlwbWVudCI6Ik11c3RhbmciLCJsb2dpbiI6InJkdWFydGUiLCJpYXQiOjE2NTI2NTUzMzN9.IEyCpdgPfLRShFrUTOKzstsH66d9CknC3VZXoG82ZV8" })
+      const hour = new Date().getHours();
+      jwtToken == 'undefined' ? setMessage('Username or password is invalid') : navigation.navigate('Home', { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmZjZDk5NjY5ZWEwNWYzODhkNTRjYyIsInVzZXJuYW1lIjoiUmFmYWVsIER1YXJ0ZSIsImVxdWlwbWVudCI6Ik11c3RhbmciLCJsb2dpbiI6InJkdWFydGUiLCJpYXQiOjE2NTI2NTUzMzN9.IEyCpdgPfLRShFrUTOKzstsH66d9CknC3VZXoG82ZV8" }).then(() => axios.post(`http://localhost:5001/api/access`,{
+        "hour": hour,
+      }));
     }
     ).catch((error) => { console.log(error) })
   };
@@ -144,7 +175,7 @@ function Login() {
           <Text style={styles.TextButton}>Sign in</Text>
         </Button>
 
-        <Text style={styles.Error}>{menssage}</Text>
+        <Text style={styles.Error}>{message}</Text>
 
       </View >
     </>
