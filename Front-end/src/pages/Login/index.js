@@ -44,7 +44,7 @@ function Login() {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [menssage, setMenssage] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(pushToken => setExpoPushToken(pushToken));
@@ -57,7 +57,10 @@ function Login() {
       pushToken: expoPushToken
     }).then(async (response) => {
       const { jwtToken } = response.data;
-      jwtToken == 'undefined' ? setMenssage('Username or password is invalid') : navigation.navigate('Home', { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmZjZDk5NjY5ZWEwNWYzODhkNTRjYyIsInVzZXJuYW1lIjoiUmFmYWVsIER1YXJ0ZSIsImVxdWlwbWVudCI6Ik11c3RhbmciLCJsb2dpbiI6InJkdWFydGUiLCJpYXQiOjE2NTI2NTUzMzN9.IEyCpdgPfLRShFrUTOKzstsH66d9CknC3VZXoG82ZV8" })
+      const hour = new Date().getHours();
+      jwtToken == 'undefined' ? setMessage('Username or password is invalid') : navigation.navigate('Home', { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmZjZDk5NjY5ZWEwNWYzODhkNTRjYyIsInVzZXJuYW1lIjoiUmFmYWVsIER1YXJ0ZSIsImVxdWlwbWVudCI6Ik11c3RhbmciLCJsb2dpbiI6InJkdWFydGUiLCJpYXQiOjE2NTI2NTUzMzN9.IEyCpdgPfLRShFrUTOKzstsH66d9CknC3VZXoG82ZV8" }).then(() => axios.post(`http://localhost:5001/api/access`,{
+        "hour": hour,
+      }));
     }
     ).catch((error) => { console.log(error) })
   };
@@ -144,7 +147,7 @@ function Login() {
           <Text style={styles.TextButton}>Sign in</Text>
         </Button>
 
-        <Text style={styles.Error}>{menssage}</Text>
+        <Text style={styles.Error}>{message}</Text>
 
       </View >
     </>
