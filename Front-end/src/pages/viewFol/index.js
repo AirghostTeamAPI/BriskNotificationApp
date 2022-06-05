@@ -8,6 +8,7 @@ export default function viewFol({ route }) {
 
     React.useEffect(() => {
         Axios.get(`https://api5-fatec.herokuapp.com/api/fol/${route.params.title}`).then((response) => { setValue(response.data) });
+        Axios.post(`http://localhost:5000/api/fols/notifiedUsers?title=${route.params.title}`);
     }, []);
 
     return (
