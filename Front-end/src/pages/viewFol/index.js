@@ -5,10 +5,9 @@ import Pdf from 'react-native-pdf';
 
 export default function viewFol({ route }) {
     const [value, setValue] = useState();
-
     React.useEffect(() => {
-        Axios.get(`https://api5-fatec.herokuapp.com/api/fol/${route.params.title}`).then((response) => { setValue(response.data) });
-        Axios.post(`http://localhost:5000/api/fols/notifiedUsers?title=${route.params.title}`);
+        Axios.post(`https://api5-fatec.herokuapp.com/api/fol/${route.params.folData[1]}`);
+        Axios.get(`https://api5-fatec.herokuapp.com/api/fol/${route.params.folData[0]}`).then((response) => { setValue(response.data)});
     }, []);
 
     return (

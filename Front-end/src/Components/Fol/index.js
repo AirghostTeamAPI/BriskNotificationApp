@@ -9,7 +9,9 @@ export default function CardFol(props) {
   const navigation = useNavigation();
   const ifViewed = props.linha.ifViewed
   const title = props.linha.title;
-  const equipment = props.linha.equipment
+  const id = props.linha.id;
+  const folData = [title,id];
+  const equipment = props.linha.equipment;
   const description = props.linha.issue_description;
   const { colors } = useTheme();
   const styles = StyleSheet.create
@@ -33,10 +35,9 @@ export default function CardFol(props) {
         color: "#FFFFFF"
       }
     });
-
   if (ifViewed != true) {
     return (
-      <Card onPress={() => navigation.navigate("viewFol", { title })} style={styles.card}>
+      <Card onPress={() => navigation.navigate("viewFol", { folData })} style={styles.card}>
         <Card.Title title={description} subtitle={`• ${title} • ${equipment}`}
           subtitleStyle={{ color: colors.secondary, fontWeight: "bold" }}
         />
