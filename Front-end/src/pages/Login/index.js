@@ -79,7 +79,7 @@ function Login() {
 
   async function signIn() {
     try {
-      const response = await axios.post('localhost:5001/api/user/auth', {
+      const response = await axios.post('https://brisk-notification-user.herokuapp.com/api/user/auth', {
         login: username,
         password: password,
         pushToken: expoPushToken,
@@ -90,7 +90,7 @@ function Login() {
       jwtToken.length == 'undefined' ?
         setMessage('Username or password is invalid') :
         navigation.navigate('Home', { token: jwtToken })
-          .then(() => axios.post(`http://localhost:5001/api/access`, {
+          .then(() => axios.post(`https://brisk-notification-user.herokuapp.com/api/access`, {
             "hour": hour,
           }));
     } catch {

@@ -44,9 +44,9 @@ export default function ListFol({ route }) {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const req1 = await Axios.get(`https://api5-fatec.herokuapp.com/api/fols/?equipment=${selectedEquipment}`, { headers: { "Authorization": `Bearer ${token}` } })
+      const req1 = await Axios.get(`https://brisk-notification-fol.herokuapp.com/api/fols/?equipment=${selectedEquipment}`, { headers: { "Authorization": `Bearer ${token}` } })
 
-      const req2 = await Axios.get('https://api5-fatec.herokuapp.com/api/user/viewedFols', { headers: { "Authorization": `Bearer ${token}` } })
+      const req2 = await Axios.get('https://brisk-notification-user.herokuapp.com/api/user/viewedFols', { headers: { "Authorization": `Bearer ${token}` } })
       const value = []
       for (let i = 0; i < req1.data.length; i++) {
 
@@ -63,7 +63,7 @@ export default function ListFol({ route }) {
   }, []);
 
   function listFolBySelectedCategory(selectedValue) {
-    Axios.get(`https://api5-fatec.herokuapp.com/api/fols/?equipment=${selectedEquipment}&search=${selectedValue}`, {
+    Axios.get(`https://brisk-notification-fol.herokuapp.com/api/fols/?equipment=${selectedEquipment}&search=${selectedValue}`, {
       headers: {
         "Authorization": `Bearer ${token}`
       }
@@ -72,14 +72,14 @@ export default function ListFol({ route }) {
   }
 
   function searchFolByKeyWord(searchQuery) {
-    Axios.get(`https://api5-fatec.herokuapp.com/api/fols/?equipment=${selectedEquipment}&search=${searchQuery}`, {
+    Axios.get(`https://brisk-notification-fol.herokuapp.com/api/fols/?equipment=${selectedEquipment}&search=${searchQuery}`, {
       headers: {
         "Authorization": `Bearer ${token}`
       }
     }).then((response) => { setValue(response.data) });
   }
   
-  Axios.get(`http://api5-fatec.herokuapp.com/api/fols/categories/?equipment=${selectedEquipment}`, {headers: {
+  Axios.get(`https://brisk-notification-fol.herokuapp.com/api/fols/categories/?equipment=${selectedEquipment}`, {headers: {
     "Authorization": `Bearer ${token}`}}).then((response)=>
   {setCategoriesList(response.data)});
 
