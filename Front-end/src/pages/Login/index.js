@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import * as Location from 'expo-location';
 import Geocoder from 'react-native-geocoding';
+import { Snackbar } from "@react-native-material/core";
 
 async function registerForPushNotificationsAsync() {
   let pushToken;
@@ -55,46 +56,49 @@ function Login() {
 
     let { status } = await Location.requestForegroundPermissionsAsync();
     console.log('passou aqui')
-    if(status!=='granted'){
-     setErrorMsg('Permission to access location was denied');
-   }
-   else{
-     await getLocation();
-   }
+    if (status !== 'granted') {
+      setErrorMsg('Permission to access location was denied');
+    }
+    else {
+      await getLocation();
+    }
 
   }, []);
 
-  async function getLocation()
-{
-  let location = await Location.getCurrentPositionAsync({});
-  Geocoder.init("AIzaSyCQrsTftjZKJ2hLa_q2wlNPWWa7RVtclGA")
-  Geocoder.from(location.coords.latitude, location.coords.longitude)
-  .then(json => {
-      let address = json.results[0].address_components[6].long_name;
-      setCountry(address);
-      console.log(`${country}`);
-  })
-  .catch(error => console.warn(error));
-}
+  async function getLocation() {
+    let location = await Location.getCurrentPositionAsync({});
+    Geocoder.init("AIzaSyCQrsTftjZKJ2hLa_q2wlNPWWa7RVtclGA")
+    Geocoder.from(location.coords.latitude, location.coords.longitude)
+      .then(json => {
+        let address = json.results[0].address_components[6].long_name;
+        setCountry(address);
+        console.log(`${country}`);
+      })
+      .catch(error => console.warn(error));
+  }
 
-async function signIn(){
-  try{
-    const response = await axios.post('localhost:5001/api/user/auth', {
-      login: username,
-      password: password,
-      pushToken: expoPushToken,
-      country: country
-    });
+  async function signIn() {
+    try {
+      const response = await axios.post('localhost:5001/api/user/auth', {
+        login: username,
+        password: password,
+        pushToken: expoPushToken,
+        country: country
+      });
       const { jwtToken } = response.data;
       const hour = new Date().getHours();
       jwtToken.length == 'undefined' ?
-       setMessage('Username or password is invalid') :
-       navigation.navigate('Home', { token:  jwtToken})
-      .then(() => axios.post(`http://localhost:5001/api/access`,{
-        "hour": hour,
-      }));
-    } catch {(error) => { error.message=='User not found' ? setMessage(error.message) : setMessage('Username or password is invalid');
-    error.message=='Password is incorrect' ? setMessage(error.message) : setMessage('Username or password is invalid') }}
+        setMessage('Username or password is invalid') :
+        navigation.navigate('Home', { token: jwtToken })
+          .then(() => axios.post(`http://localhost:5001/api/access`, {
+            "hour": hour,
+          }));
+    } catch {
+      (error) => {
+        error.message == 'User not found' ? setMessage(error.message) : setMessage('Username or password is invalid');
+        error.message == 'Password is incorrect' ? setMessage(error.message) : setMessage('Username or password is invalid')
+      }
+    }
   };
 
 
@@ -175,14 +179,14 @@ async function signIn(){
           right={<TextInput.Icon name="eye" style={styles.Items} color={colors.accent} onPress={() => setSecure(!secure)} />}
           left={<TextInput.Icon name="lock" style={styles.Items} color={colors.accent} />}
         />
-        <Button icon="" mode="contained" onPress={signIn()} style={styles.Button}>
+        <Button icon="" mode="contained" onPress={() => signIn()} style={styles.Button}>
           <Text style={styles.TextButton}>Sign in</Text>
         </Button>
 
         <Snackbar
-                message={message}
-                style={{ position: "absolute", start: 16, end: 16, bottom: 16 }}
-              />
+          message={message}
+          style={{ position: "absolute", start: 16, end: 16, bottom: 16 }}
+        />
 
       </View >
     </>
