@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import { StyleSheet, Dimensions, View } from 'react-native';
 import Pdf from 'react-native-pdf';
+import { Snackbar } from "@react-native-material/core";
 
 export default function viewFol({ route }) {
     const [value, setValue] = useState();
@@ -12,13 +13,17 @@ export default function viewFol({ route }) {
 
     return (
         <View style={{ flex: 1 }}>
-            <Pdf
+            { route.params.folData[1] === 'Mustang' ? <Pdf
                 source={{ uri: 'https://henriquehelloworld.blob.core.windows.net/fatecpublic/FOL-MUS-FATEC.pdf' }}
                 onError={(error) => {
                     console.log(error);
                 }}
                 page={value}
-                style={styles.pdf} />
+                style={styles.pdf} /> : <Snackbar
+                message="Pdf of this vehicle does not exist!."
+                style={{ position: "absolute", start: 16, end: 16, bottom: 16 }}
+              />}
+            
         </View>
     )
 }

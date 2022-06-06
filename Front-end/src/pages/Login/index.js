@@ -50,7 +50,7 @@ function Login() {
   const [country, setCountry] = useState('');
 
 
-  useEffect(() => {
+  useEffect(async () => {
     registerForPushNotificationsAsync().then(pushToken => setExpoPushToken(pushToken));
 
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -77,20 +77,24 @@ function Login() {
   .catch(error => console.warn(error));
 }
 
-  const signIn = () => {
-    axios.post('https://api5-fatec.herokuapp.com/api/user/auth', {
+async function signIn(){
+  try{
+    const response = await axios.post('localhost:5001/api/user/auth', {
       login: username,
       password: password,
       pushToken: expoPushToken,
       country: country
-    }).then(async (response) => {
+    });
       const { jwtToken } = response.data;
       const hour = new Date().getHours();
-      jwtToken == 'undefined' ? setMessage('Username or password is invalid') : navigation.navigate('Home', { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNmZjZDk5NjY5ZWEwNWYzODhkNTRjYyIsInVzZXJuYW1lIjoiUmFmYWVsIER1YXJ0ZSIsImVxdWlwbWVudCI6Ik11c3RhbmciLCJsb2dpbiI6InJkdWFydGUiLCJpYXQiOjE2NTI2NTUzMzN9.IEyCpdgPfLRShFrUTOKzstsH66d9CknC3VZXoG82ZV8" }).then(() => axios.post(`http://localhost:5001/api/access`,{
+      jwtToken.length == 'undefined' ?
+       setMessage('Username or password is invalid') :
+       navigation.navigate('Home', { token:  jwtToken})
+      .then(() => axios.post(`http://localhost:5001/api/access`,{
         "hour": hour,
       }));
-    }
-    ).catch((error) => { console.log(error) })
+    } catch {(error) => { error.message=='User not found' ? setMessage(error.message) : setMessage('Username or password is invalid');
+    error.message=='Password is incorrect' ? setMessage(error.message) : setMessage('Username or password is invalid') }}
   };
 
 
@@ -171,11 +175,14 @@ function Login() {
           right={<TextInput.Icon name="eye" style={styles.Items} color={colors.accent} onPress={() => setSecure(!secure)} />}
           left={<TextInput.Icon name="lock" style={styles.Items} color={colors.accent} />}
         />
-        <Button icon="" mode="contained" onPress={signIn} style={styles.Button}>
+        <Button icon="" mode="contained" onPress={signIn()} style={styles.Button}>
           <Text style={styles.TextButton}>Sign in</Text>
         </Button>
 
-        <Text style={styles.Error}>{message}</Text>
+        <Snackbar
+                message={message}
+                style={{ position: "absolute", start: 16, end: 16, bottom: 16 }}
+              />
 
       </View >
     </>
