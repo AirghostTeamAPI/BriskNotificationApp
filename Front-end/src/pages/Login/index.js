@@ -161,7 +161,7 @@ function Login() {
         <TextInput
           mode="outlined"
           label={expoPushToken}
-          onChange={event => setUsername(event.target.value)}
+          onChange={(text) => setUsername(text)}
           value={username}
           placeholder={expoPushToken}
           theme={{ roundness: 30 }}
@@ -173,7 +173,7 @@ function Login() {
           label="Password"
           placeholder="Type your password"
           theme={{ roundness: 30, borderWidth: 1, borderColor: colors.accent }}
-          onChange={event => setPassword(event.target.value)}
+          onChangeText={(text) => setPassword(text)}
           style={styles.TextInput}
           secureTextEntry={secure}
           right={<TextInput.Icon name="eye" style={styles.Items} color={colors.accent} onPress={() => setSecure(!secure)} />}
