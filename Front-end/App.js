@@ -5,6 +5,8 @@ import { useFonts, Anton_400Regular } from '@expo-google-fonts/anton';
 import { Provider as PaperProvider } from 'react-native-paper';
 import * as Notifications from 'expo-notifications';
 import Routes from './src/router';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

@@ -97,7 +97,7 @@ export default function ListFol({ route }) {
         }
       </Picker>
       {
-        value?.map((linha) => <CardFol key={linha} linha={linha} />)
+        value?.map((linha) => <CardFol linha={linha} />)
       }
     </View>
   )

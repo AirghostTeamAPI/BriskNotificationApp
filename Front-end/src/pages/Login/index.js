@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Image, useEffect, useState } from "react";
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { Button, Title, Subheading, TextInput } from 'react-native-paper';
@@ -49,13 +49,13 @@ function Login() {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [country, setCountry] = useState('');
+  const [jwtToken, setjwtToken] = useState('');
 
 
   useEffect(async () => {
     registerForPushNotificationsAsync().then(pushToken => setExpoPushToken(pushToken));
 
     let { status } = await Location.requestForegroundPermissionsAsync();
-    console.log('passou aqui')
     if (status !== 'granted') {
       setErrorMsg('Permission to access location was denied');
     }
@@ -77,32 +77,31 @@ function Login() {
       .catch(error => console.warn(error));
   }
 
-  async function signIn() {
+  async function auth() {
     try {
       const response = await axios.post('https://brisk-notification-user.herokuapp.com/api/user/auth', {
         login: username,
         password: password,
-        pushToken: expoPushToken,
-        country: country
       });
-      const { jwtToken } = response.data;
-      const hour = new Date().getHours();
-      jwtToken.length == 'undefined' ?
-        setMessage('Username or password is invalid') :
-        navigation.navigate('Home', { token: jwtToken })
-          .then(() => axios.post(`https://brisk-notification-user.herokuapp.com/api/access`, {
-            "hour": hour,
-          }));
-    } catch {
-      (error) => {
-        error.message == 'User not found' ? setMessage(error.message) : setMessage('Username or password is invalid');
-        error.message == 'Password is incorrect' ? setMessage(error.message) : setMessage('Username or password is invalid')
-      }
+      return response.data.jwtToken;
+
+    } catch (error) {
+        if ( error.response.status == 404) setMessage(error.response.data.message);
+        if (error.response.status == 401) setMessage(error.response.data.message);
     }
   };
 
-
-
+  async function signIn() {
+      const jwtToken = await auth();
+      const hour = new Date().getHours();
+     if (!jwtToken) {}
+      else {
+        axios.post(`https://brisk-notification-user.herokuapp.com/api/access`, {
+            "hour": hour,
+          });
+          navigation.navigate('Home', { token: jwtToken });
+        }
+    }
   const { colors } = useTheme();
   const styles = StyleSheet.create({
     TextInput: {
@@ -120,6 +119,7 @@ function Login() {
       color: colors.accent,
     },
     View: {
+      flex:1, flexDirection:'column', justifyContent:'center', alignItems:'center',
       backgroundColor: colors.primary,
       height: "100%",
     },
@@ -132,6 +132,8 @@ function Login() {
     },
     Text: {
       fontSize: 20,
+
+
       color: colors.background,
       fontWeight: "bold",
     },
@@ -161,16 +163,14 @@ function Login() {
         <TextInput
           mode="outlined"
           label={expoPushToken}
-          onChange={(text) => setUsername(text)}
-          value={username}
-          placeholder={expoPushToken}
+          onChangeText={(text) => setUsername(text)}
+          placeholder="Type your username"
           theme={{ roundness: 30 }}
           style={styles.TextInput}
           left={<TextInput.Icon name="account" style={styles.Items} color={colors.accent} />}
         />
         <TextInput
           mode="outlined"
-          label="Password"
           placeholder="Type your password"
           theme={{ roundness: 30, borderWidth: 1, borderColor: colors.accent }}
           onChangeText={(text) => setPassword(text)}
@@ -183,10 +183,15 @@ function Login() {
           <Text style={styles.TextButton}>Sign in</Text>
         </Button>
 
-        <Snackbar
+       { message ? <Snackbar
           message={message}
           style={{ position: "absolute", start: 16, end: 16, bottom: 16 }}
-        />
+        /> : null }
+
+        { !username || !password ? <Snackbar
+          message={'Please fill in the fields'}
+          style={{ position: "absolute", start: 16, end: 16, bottom: 16 }}
+        /> : null }
 
       </View >
     </>

@@ -13,7 +13,8 @@ export default function viewFol({ route }) {
 
     return (
         <View style={{ flex: 1 }}>
-            { route.params.folData[1] === 'Mustang' ? <Pdf
+            { console.log(route.params.folData[1] )}
+            {route.params.folData[1] === 'Mustang' ? <Pdf
                 source={{ uri: 'https://henriquehelloworld.blob.core.windows.net/fatecpublic/FOL-MUS-FATEC.pdf' }}
                 onError={(error) => {
                     console.log(error);
