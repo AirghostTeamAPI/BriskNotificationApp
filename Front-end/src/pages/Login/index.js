@@ -10,6 +10,7 @@ import * as Location from 'expo-location';
 import Geocoder from 'react-native-geocoding';
 import { Snackbar } from "@react-native-material/core";
 
+
 async function registerForPushNotificationsAsync() {
   let pushToken;
   if (Device.isDevice) {
@@ -94,8 +95,7 @@ function Login() {
   async function signIn() {
       const jwtToken = await auth();
       const hour = new Date().getHours();
-     if (!jwtToken) {}
-      else {
+     if (jwtToken)  {
         axios.post(`https://brisk-notification-user.herokuapp.com/api/access`, {
             "hour": hour,
           });
@@ -132,8 +132,6 @@ function Login() {
     },
     Text: {
       fontSize: 20,
-
-
       color: colors.background,
       fontWeight: "bold",
     },

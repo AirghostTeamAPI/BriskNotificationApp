@@ -10,8 +10,8 @@ export default function CardFol(props) {
   const ifViewed = props.linha.ifViewed
   const title = props.linha.title;
   const id = props.linha.id;
-  const folData = [title,id, equipment];
   const equipment = props.linha.equipment;
+  const folData = [title,id, equipment];
   const description = props.linha.issue_description;
   const { colors } = useTheme();
   const styles = StyleSheet.create
