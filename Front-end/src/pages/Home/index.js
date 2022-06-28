@@ -13,7 +13,7 @@ export default function Home({ route }) {
 
   return (
     <View>
-      <Header key={decoded.equipment} username={decoded.username} backAction={false} />
+      <Header key={decoded.equipment} id={decoded.id} username={decoded.username} backAction={false} />
       {
         listEquipment.map((value) => <CardVehicle key={value} equipment={value} token={token} />)
       }

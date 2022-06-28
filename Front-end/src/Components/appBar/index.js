@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Appbar, Menu, Divider, useTheme } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 function Header(props) {
   const { colors } = useTheme();
@@ -37,6 +38,10 @@ function Header(props) {
 
   const openMenu = () => setVisible(true);
 
+  async function deleteUser(id) {
+    await axios.patch(`https://brisk-notification-user.herokuapp.com/api/user/block?id=${id}`).then(()=>{ navigation.navigate('Login') });
+  }
+
   if (props.backAction) {
     return (
       <Appbar.Header>
@@ -47,6 +52,8 @@ function Header(props) {
           visible={visible}
           anchor={<Appbar.Action color={colors.accent} icon="dots-vertical" onPress={openMenu} />}>
           <Menu.Item title={props.username} />
+          <Divider />
+          <Menu.Item onPress={() => {deleteUser(props.id)}} title="Delete User" />
           <Divider />
           <Menu.Item onPress={() => { }} title="contact us" />
           <Menu.Item onPress={() => navigation.navigate('Login')} title="logout" />
@@ -63,6 +70,7 @@ function Header(props) {
           visible={visible}
           anchor={<Appbar.Action color={colors.accent} icon="dots-vertical" onPress={openMenu} />}>
           <Menu.Item title={props.username} />
+          <Menu.Item onPress={()=> {deleteUser(props.id)}} title="Delete User" />
           <Divider />
           <Menu.Item onPress={() => { }} title="contact us" />
           <Menu.Item onPress={() => navigation.navigate('Login')} title="logout" />
